@@ -7,10 +7,14 @@ use App\Models\Devoir;
 use App\Models\Matiere;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeControllers extends Controller
 {
     public function index(){
+
+
+        // $users = User::where('id','!=',Auth::user()->id)->get();
 
         $users= User::orderBy("name","asc")->get();
         

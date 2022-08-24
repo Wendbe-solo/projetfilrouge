@@ -149,7 +149,7 @@ class CommunalController extends Controller
 
 
     public function secret(){
-        return view('gestion.ajoutsecretaire');
+        return view('secretaire.ajoutsecretaire');
     }
 
 
@@ -231,12 +231,12 @@ class CommunalController extends Controller
     public function liste1(){
 
 
-        return view('gestion.listes');
+        return view('secretaire.listes');
     }
 
     public function listes(){
         $users = User ::orderBy('name','asc')->get();
-        return view('gestion.listes',compact('users'));
+        return view('secretaire.listes',compact('users'));
     }
 
    

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMatieresTable extends Migration
+class CreateMamoyennesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,11 @@ class CreateMatieresTable extends Migration
      */
     public function up()
     {
-        Schema::create('matieres', function (Blueprint $table) {
+        Schema::create('mamoyennes', function (Blueprint $table) {
             $table->id();
-            $table->string('matiere');
-            $table->string('coeficient');
-            $table->string('professeur');
-            $table->foreignId('annee_id')->constrained();
-            $table->foreignId('classe_id')->constrained();
+            $table->string('moyenne');
+            $table->string('id_note');
+            $table->string('id_maticule');
             $table->timestamps();
         });
     }
@@ -31,6 +29,6 @@ class CreateMatieresTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('matieres');
+        Schema::dropIfExists('mamoyennes');
     }
 }

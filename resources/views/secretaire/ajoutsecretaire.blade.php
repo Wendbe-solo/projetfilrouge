@@ -43,13 +43,18 @@
             </div>
             </div>
 
-            <div class="form-group ">
-            <label for="firstname" class="control-label col-lg-2">Role</label>
+         
 
-            <div class="col-lg-10">
-                <x-input id="name" class=" form-control" type="text" name="role" :value="old('Role')" required  />
-            </div>
-            </div>
+
+            <div class="form-group ">
+                  <label for="firstname" class="control-label col-lg-2">Role</label>
+                    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="name"  name="role" :value="old('Role')" required >
+                      <option value="Directeur">Directeur</option>
+                      <option value="Secretaire">Secretaire</option>
+
+                </select>
+                </div>
+
 
             <!-- Email Address -->
             <div class="form-group ">

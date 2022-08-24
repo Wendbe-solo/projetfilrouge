@@ -13,4 +13,17 @@ class Note extends Model
         "devoir_id",
         "note",
     ];
+
+    public function Eleve()
+    {
+        return $this->belongsTo(Eleve::class, "eleve_id");
+
+}
+
+public function Devoir()
+{
+    return $this->belongsTo(Devoir::class, "devoir_id");
+
+}
+
 }

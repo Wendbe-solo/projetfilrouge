@@ -17,6 +17,7 @@
   <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet">
   <!--external css-->
   <link href="{{asset('css/font-awesome.css')}}" rel="stylesheet" />
+  <link href="{{asset('css/bulle.css')}}" rel="stylesheet" />
   <link rel="stylesheet" type="text/css" href="{{asset('css/bootstrap-fileupload.css')}}" />
   <link rel="stylesheet" type="text/css" href="{{asset('css/datepicker.css')}}" />
   <link rel="stylesheet" type="text/css" href="{{asset('css/daterangepicker.css')}}" />
@@ -26,6 +27,7 @@
   <!-- Custom styles for this template -->
   <link href="{{asset('css/style.css')}}" rel="stylesheet">
   <link href="{{asset('css/style-responsive.css')}}" rel="stylesheet">
+  <link rel="stylesheet" href="{{asset('css/carte.css')}}">
   <!--external css-->
 
 </head>
@@ -95,9 +97,9 @@
               </a>
             <ul class="sub1">
               <li><a href="{{route('ajout.secret')}}">Ajouter un secretaitre</a></li>
-              <li><a href="{{route('ajouteleve')}}">Ajouter un eleve</a></li>
-              <li><a href="{{route('listes')}}">Liste des secretaire</a></li>
-              <li><a href="{{route('listee')}}">Lister des eleves</a></li>
+              <li><a href="{{route('ajouteleve.index')}}">Ajouter un eleve</a></li>
+              <li><a href="#">Liste des secretaire</a></li>
+              <li><a href="{{route('listee.index')}}">Lister des eleves</a></li>
             </ul>
           </li>
           <li class="couleur2 sub-menu">
@@ -106,9 +108,9 @@
               <span>Pedagogie</span>
               </a>
             <ul class="sub1">
-              <li><a href="{{route('matiere')}}">Matiere</a></li>
-              <li><a href="{{route('devoir')}}">Devoir</a></li>
-              <li><a href="{{route('note')}}">Note</a></li> 
+              <li><a href="#">Matiere</a></li>
+              <li><a href="{{route('devoir.index')}}">Devoir</a></li>
+              <li><a href="{{route('note.index')}}">Note</a></li> 
             </ul>
           </li>
           <li class="couleur3 sub-menu">
@@ -117,10 +119,10 @@
               <span>Paramettre</span>
               </a>
             <ul class="sub1">
-              <li><a href="{{route('anneesco')}}">Annee-scholaire</a></li>
-              <li><a href="{{route('classe')}}">Classe</a></li>
-              <li><a href="{{route('amatiere')}}">Matiere</a></li>
-              <li><a href="{{route('trimestre')}}">Trimestre</a></li>
+              <li><a href="{{route('anneesco.index')}}">Annee-scholaire</a></li>
+              <li><a href="{{route('classe.index')}}">Classe</a></li>
+              <li><a href="{{route('matiere.index')}}">Matiere</a></li>
+              <li><a href="{{route('trimestre.index')}}">Trimestre</a></li>
             </ul>
           </li>
           

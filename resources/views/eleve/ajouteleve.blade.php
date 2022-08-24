@@ -24,13 +24,13 @@
         </ul>
         @endif
               <div class="form">
-              <form  method="post" action="{{route('ajouteleve/ajout')}}" class="form-horizontal style-form">
+              <form  method="post" action="{{route('ajouteleve.store')}}" class="form-horizontal style-form">
               @csrf
 
               <div class="form-group ">
                     <label for="firstname" class="control-label col-lg-2">Matricule</label>
                     <div class="col-lg-10">
-                      <input class=" form-control" id="firstname" name="matricule" type="text" />
+                      <input class=" form-control" id="firstname" name="matricule" type="text"  require/>
                     </div>
                   </div>
 

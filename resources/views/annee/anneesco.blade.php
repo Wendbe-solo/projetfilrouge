@@ -26,7 +26,7 @@
         </ul>
         @endif
               <div class="form">
-                <form class="cmxform form-horizontal style-form" id="signupForm" method="post" action="{{route('anneesco.ajout')}}">
+                <form class="cmxform form-horizontal style-form" id="signupForm" method="post" action="{{route('anneesco.store')}}">
                 @csrf
 
                 <div class="form-group ">
@@ -67,12 +67,14 @@
             <td>{{$annee->annee}}</td>
             <td>{{$annee->created_at}}</td>
             <td>
-                <a href="" class="btn btn-info">Editer</a>
-                <a href="" class="btn btn-danger" onclick="">Suprimer</a>
-
-                <form id="" action="" method="post">
+       
+            <a href="" class="btn btn-info">Editer</a>
+                <form id="form-{{$annee->id}}"  action="{{route('anneesco.destroy',$annee->id)}}" method="post">
                     @csrf 
                     <input type="hidden" name="_method" value="delete">
+
+                    @method('DELETE')
+                    <button class="btn btn-danger" onclick="if(confirm('Voulez-vous vraiment supprimer cet annee?')){document.getElementById('form-{{$annee->id}}').submit()}"  type="submit">Supprimer</button>
                 </form>
             </td>
             </tr>  

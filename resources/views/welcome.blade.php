@@ -73,4 +73,44 @@
     <br>
     </center>
 
+
+    <div class="cartee" >
+                        <div id="printCard" >
+                            <div class="flex h-1/4 w-100">
+                                <div class="mb-1 w-2/3 text-2xl font-semibold text-[#007436] pl-3">
+                                    Carte Scolaire
+                                </div>
+                                <div class="flex w-1/3 h-20 mb-1 ml-6">
+                                    <img src="" alt="logo_universiteBobo" class="relative z-10 inset-0 w-auto h-42 " loading="lazy" />
+                                    <p class="font-semibold text-black text-center p-3">Lycée Communal<br> de Zorgho</p>
+                                </div>
+                            </div>
+                            <p class="border-1 w-1/3 mb-3 border-black"></p>
+                            <div class="flex  w-100 h-3/4">
+                                <div class="h-100 w-1/4 mb-1 ml-2 border-black">
+                                    <img src="" alt="" class="lowercase object-contain " />
+                                </div>
+                                <div class="flex-auto pl-6 h-2/3">
+                                    <h1 class="relative text-2xl font-semibold">
+                                        Matricule: 
+                                    </h1>
+                                    <div class="relative text-lg ">
+                                        Nom:
+                                    </div>
+                                    <div class="relative text-lg  mt-1">
+                                        Prenom:
+                                    </div>
+                                    <div class="relative text-lg mt-1 capitalize">
+                                        Cycle: 
+                                    </div>
+                                    <div class="relative  text-lg mt-1">
+                                        Contact: 
+                                    </div>
+                                    <div class="relative  text-lg mt-1">
+                                        Email: 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                </div>
     @endsection

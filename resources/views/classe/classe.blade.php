@@ -8,7 +8,7 @@
         <!-- /row -->
         <div class="row mt">
           <div class="col-lg-12">
-            <h3 class="milieu"> Ajout de matiere</h3>
+            <h3 class="milieu">Ajout de classe</h3>
             <div class="form-panel">
 
             @if(session()->has("success"))
@@ -25,41 +25,15 @@
         </ul>
         @endif
               <div class="form">
-                <form class="cmxform form-horizontal style-form" id="signupForm" method="post" action="{{route('devoir.ajout')}}">
+                <form class="cmxform form-horizontal style-form" id="signupForm" method="post" action="{{route('classe.store')}}">
                 @csrf
 
                 <div class="form-group ">
-                    <label for="firstname" class="control-label col-lg-2">Devoir</label>
+                    <label for="firstname" class="control-label col-lg-2">Classe</label>
                     <div class="col-lg-10">
-                      <input class=" form1" id="firstname" name="libele" type="text" />
+                      <input class=" form1" id="firstname" name="classe" type="text" />
                     </div>
                 </div>
-
-                <div class="form-group ">
-                    <label for="firstname" class="control-label col-lg-2">Classe</label>
-                    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="classe_id" id="">
-                  <option value=""></option>
-
-                @foreach ($classes as $classe)
-                <option value="{{$classe->id}}"> {{$classe->classe}}</option>
-                @endforeach
-
-                </select>
-                </div>
-
-                <div class="form-group ">
-                    <label for="firstname" class="control-label col-lg-2">Annee</label>
-                    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="matiere_id" id="">
-                  <option value=""></option>
-
-                @foreach ($matieres as $matiere)
-                <option value="{{$matiere->id}}"> {{$matiere->matiere}}</option>
-                @endforeach
-
-                </select>
-                </div>
-
-                
 
                     <div class="form-group">
                         <div class="col-lg-offset-2 col-lg-10">
@@ -74,33 +48,32 @@
           </div>
           <!-- /col-lg-12 -->
         </div>
+        <!-- /row -->
 
         <div class="center">
             <table class="table table-bordered table-hover">
         <thead>
             <tr>
             <th scope="col">N°</th>
-            <th scope="col">Devoir</th>
-            <th scope="col">Matiere</th>
             <th scope="col">Classe</th>
+            <th scope="col">Date Inscription</th>
             <th scope="col">Action</th>
             </tr>
         </thead>
         <tbody>
-            @foreach($devoirs as $devoir)
+            @foreach($classes as $classe)
             <tr>
             <th scope="row">{{$loop->index + 1}}</th>
-            <td>{{$devoir->libele}}</td>
-            <td>{{$devoir->matiere->matiere}}</td>
-            <td>{{$devoir->classe->classe}}</td>
-            <td>{{$devoir->created_at}}</td>
+            <td>{{$classe->classe}}</td>
+            <td>{{$classe->created_at}}</td>
             <td>
                 <a href="" class="btn btn-info">Editer</a>
-                <a href="" class="btn btn-danger" onclick="">Suprimer</a>
-
-                <form id="" action="" method="post">
+                <form id="form-{{$classe->id}}"  action="{{route('classe.destroy',$classe->id)}}" method="post">
                     @csrf 
                     <input type="hidden" name="_method" value="delete">
+
+                    @method('DELETE')
+                    <button class="btn btn-danger" onclick="if(confirm('Voulez-vous vraiment supprimer cette classe?')){document.getElementById('form-{{$classe->id}}').submit()}"  type="submit">Supprimer</button>
                 </form>
             </td>
             </tr>  
@@ -108,13 +81,9 @@
         </tbody>
         </table>
         </div>
-        <!-- /row -->
       </section>
       <!-- /wrapper -->
     </section>
-
-
-
 
 
 

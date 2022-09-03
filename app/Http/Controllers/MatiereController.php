@@ -17,11 +17,7 @@ class MatiereController extends Controller
     public function index()
     {
         $matieres = Matiere ::orderBy('matiere','asc')->get();
-
-
         $annees = Annee ::orderBy('annee','asc')->get();
-
-
         $classes = Classe ::orderBy('classe','asc')->get();
 
         
@@ -49,12 +45,14 @@ class MatiereController extends Controller
         $request->validate([
             "matiere"=>"required",
             "coeficient"=>"required",
+            "professeur"=>"required",
             "annee_id"=>"required",
             "classe_id"=>"required" 
         ]);
         Matiere::create([
             "matiere"=>$request->matiere,
             "coeficient"=>$request->coeficient,
+            "professeur"=>$request->professeur,
             "annee_id"=>$request->annee_id,
             "classe_id"=>$request->classe_id
         ]);

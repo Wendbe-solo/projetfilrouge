@@ -27,108 +27,7 @@
               <form  method="post" action="{{route('ajouteleve.store')}}" class="form-horizontal style-form">
               @csrf
 
-              <div class="form-group ">
-                    <label for="firstname" class="control-label col-lg-2">Matricule</label>
-                    <div class="col-lg-10">
-                      <input class=" form-control" id="firstname" name="matricule" type="text"  require/>
-                    </div>
-                  </div>
-
-
-                  <div class="form-group ">
-                    <label for="firstname" class="control-label col-lg-2">Nom</label>
-                    <div class="col-lg-10">
-                      <input class=" form-control" id="firstname" name="nom" type="text" />
-                    </div>
-                  </div>
-
-                  <div class="form-group ">
-                    <label for="lastname" class="control-label col-lg-2">Prenom</label>
-                    <div class="col-lg-10">
-                      <input class=" form-control" id="lastname" name="prenom" type="text" />
-                    </div>
-                  </div>
-
-                  
-                  <div class="form-group">
-                  <label class="control-label col-md-3">Date de naissance</label>
-                  <div class="col-md-3 col-xs-11">
-                    <div data-date-viewmode="years" data-date-format="dd-mm-yyyy" data-date="01-01-2014" class="input-append date dpYears">
-                      <input type="text" readonly="" name="date_naissance" value="01-01-2014" size="16" class="form-control">
-                      <span class="input-group-btn add-on">
-                        <button class="btn btn-theme" type="button"><i class="fa fa-calendar"></i></button>
-                        </span>
-                    </div>
-                    <span class="help-block">Select date</span>
-                  </div>
-                </div>
-
-
-
-                <div class="form-group ">
-                    <label for="lastname" class="control-label col-lg-2">Lieu de naissance</label>
-                    <div class="col-lg-10">
-                      <input class=" form-control" id="lastname" name="lieu" type="text" />
-                    </div>
-                  </div>
-
-
-
-                  <div class="form-group ">
-                    <label for="lastname" class="control-label col-lg-2">Sexe</label>
-                    <div class="col-lg-10">
-                      <input class=" form-control" id="lastname" name="sexe" type="text" />
-                    </div>
-                  </div>
-
-                  <div class="form-group ">
-                    <label for="lastname" class="control-label col-lg-2">Nom du père</label>
-                    <div class="col-lg-10">
-                      <input class=" form-control" id="lastname" name="pere" type="text" />
-                    </div>
-                  </div>
-
-                  <div class="form-group ">
-                    <label for="lastname" class="control-label col-lg-2">Nom de la mère</label>
-                    <div class="col-lg-10">
-                      <input class=" form-control" id="lastname" name="mere" type="text" />
-                    </div>
-                  </div>
-
-
-                  <div class="form-group ">
-                    <label for="lastname" class="control-label col-lg-2">Telephone</label>
-                    <div class="col-lg-10">
-                      <input class=" form-control" id="lastname" name="numero" type="text" />
-                    </div>
-                  </div>
-
-
-                  <div class="form-group ">
-                    <label for="firstname" class="control-label col-lg-2">Annee</label>
-                    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="annee_id" id="">
-                  <option value=""></option>
-
-                @foreach ($annees as $annee)
-                <option value="{{$annee->id}}"> {{$annee->annee}}</option>
-                @endforeach
-
-                </select>
-                </div>
-
-                  <div class="form-group ">
-                    <label for="firstname" class="control-label col-lg-2">Classe</label>
-                    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="classe_id" id="">
-                  <option value=""></option>
-
-                @foreach ($classes as $classe)
-                <option value="{{$classe->id}}"> {{$classe->classe}}</option>
-                @endforeach
-
-                </select>
-                </div>
-
-                <div class="form-group last">
+              <div class="form-group last">
                   <label class="control-label col-md-3">Image Upload</label>
                   <div class="col-md-9">
                     <div class="fileupload fileupload-new" data-provides="fileupload">
@@ -148,6 +47,90 @@
                     <span class="label label-info">NOTE!</span>
                   </div>
                 </div>
+
+
+              <div class="col-6 ">
+                    <label for="firstname" class="control-label col-lg-2">Matricule</label>
+                    
+                      <input class=" col-6" id="firstname" name="matricule" type="text"  require/>
+                  
+
+                    <label for="firstname" class="control-label col-lg-2">Nom</label>
+                    
+                      <input class="col-6" id="firstname" name="nom" type="text" />
+                  
+
+                </div>
+
+                  <div class="form-group ">
+                    <label for="lastname" class="control-label col-lg-2">Prenom</label>
+                    <input class=" col-6" id="lastname" name="prenom" type="text" />
+
+                    <label class="control-label col-lg-2">Date de naissance</label>
+                    <input type="date" name="date_naissance" class="col-6" id="">
+                  
+                     
+                  </div>
+
+                  </div>
+
+
+
+                <div class="form-group ">
+                    <label for="lastname" class="control-label col-lg-2">Lieu de naissance</label>
+                    <input class=" col-6" id="lastname" name="lieu" type="text" />
+
+                    <label for="lastname" class="control-label col-lg-2">Sexe</label>
+                    <select class="col-6" id="lastname" name="sexe" type="text">
+                      <option >Choisir</option>
+                      <option value="Maxculin">Maxculin</option>
+                      <option value="Feminin">Feminin</option>
+
+                    </select>  
+                    
+                  </div>
+
+
+                  <div class="form-group ">
+                    <label for="lastname" class="control-label col-lg-2">Nom du père</label>
+                    <input class="col-6" id="lastname" name="pere" type="text" />
+
+                    <label for="lastname" class="control-label col-lg-2">Nom de la mère</label>
+                    <input class="col-6" id="lastname" name="mere" type="text" />
+                  </div>
+
+                  <div class="form-group ">
+                    <label for="lastname" class="control-label col-lg-2">Telephone</label>
+                    <div class="col-lg-10">
+                      <input class="col-6" id="lastname" name="numero" type="text" />
+                    </div>
+                  </div>
+
+
+                  <div class="form-group ">
+                    <label for="firstname" class="control-label col-lg-2">Annee</label>
+                    <select class="col-6" aria-label=".form-select-lg example" name="annee_id" id="">
+                  <option value=""></option>
+
+                @foreach ($annees as $annee)
+                <option value="{{$annee->id}}"> {{$annee->annee}}</option>
+                @endforeach
+
+                </select>
+
+                <label for="firstname" class="control-label col-lg-2">Classe</label>
+                    <select class="col-6" aria-label=".form-select-lg example" name="classe_id" id="">
+                  <option value=""></option>
+
+                @foreach ($classes as $classe)
+                <option value="{{$classe->id}}"> {{$classe->classe}}</option>
+                @endforeach
+
+                </select>
+                </div>
+
+
+                
 
                 <div class="form-group">
                     <div class="col-lg-offset-2 col-lg-10">

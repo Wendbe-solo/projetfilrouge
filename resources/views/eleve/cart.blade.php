@@ -14,7 +14,7 @@
 
 
 
-           <div class="cartee"> 
+           <div class="container cartee"> 
                 <div class="entoure">
                     <p class="lyceec">
                         LYCEE COMMUNAL DE ZORGHO

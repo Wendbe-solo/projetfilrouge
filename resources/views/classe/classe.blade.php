@@ -35,6 +35,17 @@
                     </div>
                 </div>
 
+                <div class="form-group ">
+                    <label for="firstname" class="control-label col-lg-2">Annee</label>
+                    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="annee_id" id="">
+                  <option value=""></option>
+
+                @foreach ($annees as $annee)
+                <option value="{{$annee->id}}"> {{$annee->annee}}</option>
+                @endforeach
+
+                </select>
+                </div>
                     <div class="form-group">
                         <div class="col-lg-offset-2 col-lg-10">
                         <button class="btn btn-theme" type="submit">Save</button>
@@ -56,6 +67,7 @@
             <tr>
             <th scope="col">N°</th>
             <th scope="col">Classe</th>
+            <th scope="col">Annee</th>
             <th scope="col">Date Inscription</th>
             <th scope="col">Action</th>
             </tr>
@@ -65,6 +77,7 @@
             <tr>
             <th scope="row">{{$loop->index + 1}}</th>
             <td>{{$classe->classe}}</td>
+            <td>{{$classe->annee->annee}}</td>
             <td>{{$classe->created_at}}</td>
             <td>
                 <a href="" class="btn btn-info">Editer</a>

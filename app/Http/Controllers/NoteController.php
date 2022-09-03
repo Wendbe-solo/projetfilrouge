@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Devoir;
 use App\Models\Eleve;
 use App\Models\Note;
+use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class NoteController extends Controller
 {
@@ -23,7 +25,7 @@ class NoteController extends Controller
 
         $devoirs = Devoir ::orderBy('libele','asc')->get();
         
-        return view('note.note',compact('eleves','devoirs'));
+        return view('note.note',compact('notes','eleves','devoirs'));
     }
 
     /**
@@ -44,17 +46,33 @@ class NoteController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            "eleve_id"=>"required",
-            "devoir_id"=>"required",
-            "note"=>"required",
-        ]);
-        Note::create([
-            "eleve_id"=>$request->eleve_id,
-            "devoir_id"=>$request->devoir_id,
-            "note"=>$request->note,
-        ]);
-        return back()->with("success","Enregistrer avec succès");
+
+        $eleve_id = $request->eleve_id;
+        $devoir_id = $request->devoir_id;
+        $note = $request->note;
+
+        for($i=0;$i<count($eleve_id); $i++){
+
+            $databasave= [
+                'eleve_id' =>$eleve_id,
+                'devoir_id' =>$devoir_id,
+                'note' =>$note,
+            ];
+            DB::table('notes')->insert($databasave);
+        }
+        Session::put('success',"Save Data Successfully !");
+        return back();
+        // $request->validate([
+        //     "eleve_id"=>"required",
+        //     "devoir_id"=>"required",
+        //     "note"=>"required",
+        // ]);
+        // Note::create([
+        //     "eleve_id"=>$request->eleve_id,
+        //     "devoir_id"=>$request->devoir_id,
+        //     "note"=>$request->note,
+        // ]);
+        // return back()->with("success","Enregistrer avec succès");
     }
 
     /**

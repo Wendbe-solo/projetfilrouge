@@ -1,76 +1,46 @@
-@extends('master.app')
+@extends('master.liste')
 
 @section('content')
 
 
 
-    <section id="main-content">
+  <section id="main-content">
       <section class="wrapper">
         <h3> Liste des eleves ({{$eleves->count()}}) </h3>
         <div class="row mb">
           <!-- page start-->
 
-          <div class="form-group ">
-                    <label for="firstname" class="control-label col-lg-2">Classe</label>
-                    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="classe_id" id="">
-                  <option value=""></option>
+         
 
-                @foreach ($classes as $classe)
-                <option value="{{$classe->id}}"> {{$classe->classe}}</option>
-                @endforeach
+                <div class="content-panel">
+            <div class="adv-table">
+              <table cellpadding="0" cellspacing="0" border="0" class="display table table-bordered" id="hidden-table-info">
+                <thead>
+                  <tr>
+                    <th>N°</th>
+                    <th>Nom</th>
+                    <th>Prenom</th>
+                    <th class="hidden-phone">Annee</th>
+                    <th class="hidden-phone">classe</th>
+                    <th class="hidden-phone">Gerne</th>
+                  </tr>
+                </thead>
+                <tbody>
+                @foreach($eleves as $eleve)
+                  <tr class="gradeX">
+                    <td>{{$loop->index + 1}}</td>
+                    <td>{{$eleve->nom}}</td>
+                    <td>{{$eleve->prenom}}</td>
+                    <td class="hidden-phone">{{$eleve->annee->annee}}</td>
+                    <td class="center hidden-phone">{{$eleve->classe->classe}}</td>
+                    <td class="center hidden-phone">{{$eleve->sexe}}</td>
+                  </tr>
+                  @endforeach
+                </tbody>
+              </table>
+            </div>
+          </div>
 
-                </select>
-                </div>
-
-
-
-
-
-
-
-
-
-                <div class="box-body">
-                                <form action="{{ route('listee.index') }}" method="GET">
-                                    {{-- @csrf --}}
-                                    <div class="row">
-                                        <div class="col-4">
-                                            <div class="form-group">
-                                                <h5><span class="text-danger">*</span></h5>
-                                                <div class="controls">
-                                                    <select name="year_id" id="year_id" required class="form-control">
-                                                        <option value="" {{ old('annee_id') ? '' : 'selected' }} disabled> annee
-                                                            </option>
-                                                        @foreach ($annees as $annee)
-                                                            <option
-                                                                value="{{ $annee->id }}">{{ $annee->annee }}</option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-4">
-                                            <div class="form-group">
-                                                <h5>@lang('Class') <span class="text-danger">*</span></h5>
-                                                <div class="controls">
-                                                    <select name="class_id" id="class_id" required class="form-control">
-                                                        <option value=""
-                                                            {{ old('classe_is') ? '' : 'selected' }} disabled>
-                                                            classe</option>
-                                                        @foreach ($classes as $classe)
-                                                            <option
-                                                                value="{{ $classe->id }}">{{ $classe->classe }}</option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-4" style="padding-top: 25px;">
-                                            <input type="submit" value="@lang('Search')" class="btn btn-rounded btn-dark">
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
 
 
 
@@ -78,55 +48,7 @@
 
 
                 
-          <div class="content-panel">
-            <div class="adv-table">
 
-
-
-              
-
-            <table class="table table-bordered table-hover">
-        <thead>
-            <tr>
-            <th scope="col">N°</th>
-            <th scope="col">Matricule</th>
-            <th scope="col">Nom et prenom</th>
-            <th scope="col">Date et lieu de naissance</th>
-            <th scope="col">Gerne</th>
-            <th scope="col">Annee scolaire</th>
-            <th scope="col">Classe</th>
-            <th scope="col">Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach($eleves as $eleve)
-            <tr>
-            <th scope="row">{{$loop->index + 1}}</th>
-            <td>{{$eleve->matricule}}</td>
-            <td>{{$eleve->nom}} {{$eleve->prenom}}</td>
-            <td>{{$eleve->date_naissance}} à {{$eleve->lieu}}</td>
-            <td>{{$eleve->sexe}}</td>
-            <td>{{$eleve->annee->annee}}</td>
-            <td>{{$eleve->classe->classe}}</td>
-            <td>{{$eleve->created_at}}</td>
-            <td>
-              
-                <a href="" class="btn btn-info">Editer</a>
-                <form id="form-{{$eleve->id}}"  action="{{route('listee.destroy',$eleve->id)}}" method="post">
-                    @csrf 
-                    <input type="hidden" name="_method" value="delete">
-
-                    @method('DELETE')
-                    <button class="btn btn-danger" onclick="if(confirm('Voulez-vous vraiment supprimer cet eleve?')){document.getElementById('form-{{$eleve->id}}').submit()}"  type="submit">Supprimer</button>
-                </form>
-            </td>
-            </tr>  
-            @endforeach
-        </tbody>
-        </table>
-
-            </div>
-          </div>
           <!-- page end-->
         </div>
         <!-- /row -->
@@ -136,6 +58,72 @@
     <!-- /MAIN CONTENT -->
     
   </section>
+  <script type="text/javascript">
+    /* Formating function for row details */
+    function fnFormatDetails(oTable, nTr) {
+      var aData = oTable.fnGetData(nTr);
+      var sOut = '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">';
+      sOut += '<tr><td>Rendering engine:</td><td>' + aData[1] + ' ' + aData[4] + '</td></tr>';
+      sOut += '<tr><td>Link to source:</td><td>Could provide a link here</td></tr>';
+      sOut += '<tr><td>Extra info:</td><td>And any further details here (images etc)</td></tr>';
+      sOut += '</table>';
+
+      return sOut;
+    }
+
+    $(document).ready(function() {
+      /*
+       * Insert a 'details' column to the table
+       */
+      var nCloneTh = document.createElement('th');
+      var nCloneTd = document.createElement('td');
+      nCloneTd.innerHTML = '<img src="lib/advanced-datatable/images/details_open.png">';
+      nCloneTd.className = "center";
+
+      $('#hidden-table-info thead tr').each(function() {
+        this.insertBefore(nCloneTh, this.childNodes[0]);
+      });
+
+      $('#hidden-table-info tbody tr').each(function() {
+        this.insertBefore(nCloneTd.cloneNode(true), this.childNodes[0]);
+      });
+
+      /*
+       * Initialse DataTables, with no sorting on the 'details' column
+       */
+      var oTable = $('#hidden-table-info').dataTable({
+        "aoColumnDefs": [{
+          "bSortable": false,
+          "aTargets": [0]
+        }],
+        "aaSorting": [
+          [1, 'asc']
+        ]
+      });
+
+      /* Add event listener for opening and closing details
+       * Note that the indicator for showing which row is open is not controlled by DataTables,
+       * rather it is done here
+       */
+      $('#hidden-table-info tbody td img').live('click', function() {
+        var nTr = $(this).parents('tr')[0];
+        if (oTable.fnIsOpen(nTr)) {
+          /* This row is already open - close it */
+          this.src = "lib/advanced-datatable/media/images/details_open.png";
+          oTable.fnClose(nTr);
+        } else {
+          /* Open this row */
+          this.src = "lib/advanced-datatable/images/details_close.png";
+          oTable.fnOpen(nTr, fnFormatDetails(oTable, nTr), 'details');
+        }
+      });
+    });
+  </script>
+
+
+
+
+    
   
 
 

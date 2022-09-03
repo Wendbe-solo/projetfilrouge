@@ -60,7 +60,7 @@
                 </div>
 
                 <div class="form-group ">
-                    <label for="firstname" class="control-label col-lg-2">Annee</label>
+                    <label for="firstname" class="control-label col-lg-2">Matiere</label>
                     <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="matiere_id" id="">
                   <option value=""></option>
 

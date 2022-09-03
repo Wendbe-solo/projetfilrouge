@@ -10,6 +10,12 @@ class Classe extends Model
     use HasFactory;
     protected $fillable = [
         "classe",
+        "annee_id",
     ];
+
+    public function Annee()
+    {
+        return $this->belongsTo(Annee::class, "annee_id");
+    }
 
 }

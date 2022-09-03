@@ -3,12 +3,16 @@
 use App\Http\Controllers\AnneController;
 use App\Http\Controllers\AnneescController;
 use App\Http\Controllers\ClasseController;
+use App\Http\Controllers\ClasseControllerliste;
+use App\Http\Controllers\ClasseControllerliste1;
 use App\Http\Controllers\CommunalController;
+use App\Http\Controllers\CompositionController;
 use App\Http\Controllers\DevoirController;
 use App\Http\Controllers\EleveController;
 use App\Http\Controllers\Elevecontrollers;
 use App\Http\Controllers\HomeControllers;
 use App\Http\Controllers\ListeeController;
+use App\Http\Controllers\ListesController;
 use App\Http\Controllers\MatiereController;
 use App\Http\Controllers\NoteController;
 use App\Http\Controllers\SecretaireController;
@@ -29,6 +33,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+// Route::get('list', function () {
+//     return view('list');
+// });
 
 
 Route::get('bulletin', function () {
@@ -61,6 +68,17 @@ Route::resource('devoir',DevoirController::class)->middleware(['auth']);
 Route::resource('ajouteleve',EleveController::class)->middleware(['auth']);
 
 Route::resource('listee',ListeeController::class)->middleware(['auth']);
+
+Route::resource('listes',ListesController::class)->middleware(['auth']);
+
+Route::resource('note',NoteController::class)->middleware(['auth']);
+
+Route::get('/classeliste',[ClasseControllerliste1::class,'index'])->name('classeliste');
+Route::get('/classeliste1',[ClasseControllerliste1::class,'store'])->name('classeliste1');
+Route::get('/list',[ClasseControllerliste1::class,'liste'])->name('list');
+
+Route::get('composition',[CompositionController::class,'index']);
+Route::post('composition/fetch',[CompositionController::class,'fetch'])->name('composition.fetch');
 
 // Route::resource('ajoutsecretaire',SecretaireController::class)->middleware(['auth']);
 
@@ -95,7 +113,7 @@ Route::post('ajoutsecretaire',[Elevescontrollers::class,'store'])->name('ajout.s
 
 
 
-Route::get('listes',[CommunalController::class,'liste1'])->name('listes')->middleware(['auth']);;
+// Route::get('listes',[CommunalController::class,'liste1'])->name('listes')->middleware(['auth']);;
 
 
 // Route::get('listes',[CommunalController::class,'listes'])->name('listes')->middleware(['auth']);;
@@ -112,7 +130,7 @@ Route::get('listes',[CommunalController::class,'liste1'])->name('listes')->middl
 // Route::get('note',[CommunalController::class,'note'])->name('note')->middleware(['auth']);;
 
 
-Route::resource('note',NoteController::class)->middleware(['auth']);
+
 
 
 // Route::get('matiere',[HomeControllers::class,'index'])->name('matiere')->middleware(['auth']);;

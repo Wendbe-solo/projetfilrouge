@@ -5,16 +5,24 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Matiere extends Model
+class Listes extends Model
 {
     use HasFactory;
     protected $fillable = [
-        "matiere",
-        "coeficient",
-        "professeur",
+        "matricule",
+        "nom",
+        "prenom",
+        "date_naissance",
+        "lieu",
+        "sexe",
+        "pere",
+        "mere",
+        "numero",
         "annee_id",
         "classe_id",
+        "photo",
     ];
+
 
     public function Annee()
     {
@@ -24,5 +32,6 @@ class Matiere extends Model
     public function Classe()
     {
         return $this->belongsTo(Classe::class, "classe_id");
-    }
+
+}
 }

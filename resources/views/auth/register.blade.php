@@ -54,7 +54,10 @@
             <label for="firstname" class="control-label col-lg-2">Role</label>
 
             <div class="col-lg-10">
-                <x-input id="name" class=" form-control" type="text" name="role" :value="old('Role')" required  />
+                <select  id="name" class="form-control" type="text" name="role" :value="old('Role')" required>
+                    <option> Selectionner</option>
+                    <option value="Directeur">Directeur</option>
+                </select>
             </div>
             </div>
 

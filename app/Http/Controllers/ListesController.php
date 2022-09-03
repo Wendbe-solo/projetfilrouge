@@ -4,9 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Annee;
 use App\Models\Classe;
+use App\Models\Eleve;
 use Illuminate\Http\Request;
 
-class ClasseController extends Controller
+class ListesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,13 +16,16 @@ class ClasseController extends Controller
      */
     public function index()
     {
+        // $eleves = Eleve ::where('classe_id',2)->get();
+        $eleves = Eleve ::orderBy('nom','asc')->get();
         $classes = Classe ::orderBy('classe','asc')->get();
-
         $annees = Annee ::orderBy('annee','asc')->get();
+ 
 
-        return view('classe.classe',compact('classes','annees'));
+        return view('eleve.listes',compact(['eleves','annees','classes']));
     }
 
+    
     /**
      * Show the form for creating a new resource.
      *
@@ -29,7 +33,7 @@ class ClasseController extends Controller
      */
     public function create()
     {
-        return view('classe.classe');
+        //
     }
 
     /**
@@ -40,15 +44,7 @@ class ClasseController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            "classe"=>"required",
-            "annee_id"=>"required" 
-        ]);
-        Classe::create([
-            "classe"=>$request->classe,
-            "annee_id"=>$request->annee_id
-        ]);
-        return back()->with("success","Enregistrer avec succès");
+        //
     }
 
     /**
@@ -68,9 +64,9 @@ class ClasseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Classe $classe)
+    public function edit($id)
     {
-        return view("classe.classe",compact("classes"));
+        //
     }
 
     /**
@@ -80,17 +76,9 @@ class ClasseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Classe $classe)
+    public function update(Request $request, $id)
     {
-        $request->validate([
-            "classe"=>"required",
-    
-        ]);
-        $classe->update([
-            "classe"=>$request->classe
-
-        ]);
-        return back()->with("success","annee mise a jour avec succès");
+        //
     }
 
     /**
@@ -99,9 +87,8 @@ class ClasseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Classe $classe)
+    public function destroy($id)
     {
-        $classe->delete();
-        return back()->with('succesDelete','Suprimer avec succès');
+        //
     }
 }

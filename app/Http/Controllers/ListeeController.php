@@ -14,47 +14,31 @@ class ListeeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
         // $classPk = 2;
-
-        // $eleves = Eleve ::where('classe_id',$classPk)->get();
-
-        
-
-        // $classes = Classe ::orderBy('classe','asc')->get();
-        // $annees = Annee ::orderBy('annee','asc')->get();
-
-        // $annee_id = Annee::orderBy('id', 'desc')->first()->id;
-        // $classe_id = Classe::orderBy('id', 'desc')->first()->id;
-
-        // $eleves = Eleve :: where('classe_id',$classe_id)->where('annee_id',$annee_id)->get();
-       
-
-        // $eleves = Eleve ::orderBy('nom','asc')->get();
-        // return view('eleve.listee',compact('eleves','annees','classes'));
-
-
+        $eleves = Eleve ::orderBy('nom','asc')->get();
         $classes = Classe ::orderBy('classe','asc')->get();
         $annees = Annee ::orderBy('annee','asc')->get();
 
+        return view('eleve.listee',compact(['eleves','annees','classes']));
+        // $annee_id = Annee::orderBy('id', 'desc')->first()->id;
+        // $classe_id = Classe::orderBy('id', 'desc')->first()->id;
+        // $eleves = Eleve :: where('classe_id',$classe_id)->where('annee_id',$annee_id)->get();
+        // $eleves = Eleve ::orderBy('nom','asc')->get();
+        // return view('eleve.listee',compact('eleves','annees','classes'));
 
-        $annee_id = $request->annee_id;
-        $classe_id = $request->classe_id;
+        // $classes = Classe::orderBy('classe','asc')->get();
+        // $annees = Annee::orderBy('annee','asc')->get();
+        // $annee_id = $request->annee_id;
+        // $classe_id = $request->classe_id;
 
-        $eleves = Eleve :: where('classe_id',$classe_id)->where('annee_id',$annee_id)->get();
+        // $eleves = Eleve::where('classe_id',"$classe_id")->where('annee_id',"$annee_id")->get();
        
-
         // $eleves = Eleve ::orderBy('nom','asc')->get();
         
-        return view('eleve.listee',compact('eleves','annees','classes'));
-    }
-
-    public function wise(Request $request){
-
        
-        }
-
+    }
     /**
      * Show the form for creating a new resource.
      *

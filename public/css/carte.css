@@ -52,3 +52,10 @@
     text-transform: capitalize;
     
 }
+
+.search{
+    width: 100%;
+    text-align: center;
+    padding-bottom: 15px;
+    padding-top: 15px;
+}

@@ -36,6 +36,13 @@
                 </div>
 
                 <div class="form-group ">
+                    <label for="firstname" class="control-label col-lg-2">Professeur</label>
+                    <div class="col-lg-10">
+                      <input class=" form1" id="firstname" name="professeur" type="text" />
+                    </div>
+                </div>
+
+                <div class="form-group ">
                     <label for="firstname" class="control-label col-lg-2">Coeficient</label>
                     <div class="col-lg-10">
                       <select class="form-select form-select-lg mb-3" name="coeficient" aria-label=".form-select-lg example">
@@ -98,6 +105,7 @@
             <tr>
             <th scope="col">N°</th>
             <th scope="col">Matiere</th>
+            <th scope="col">Professeur</th>
             <th scope="col">Coeficient</th>
             <th scope="col">Annee</th>
             <th scope="col">Classe</th>
@@ -110,6 +118,7 @@
             <tr>
             <th scope="row">{{$loop->index + 1}}</th>
             <td>{{$matiere->matiere}}</td>
+            <td>{{$matiere->professeur}}</td>
             <td>{{$matiere->coeficient}}</td>
             <td>{{$matiere->annee->annee}}</td>
             <td>{{$matiere->classe->classe}}</td>

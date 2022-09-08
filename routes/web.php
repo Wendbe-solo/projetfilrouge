@@ -15,8 +15,10 @@ use App\Http\Controllers\ListeeController;
 use App\Http\Controllers\ListesController;
 use App\Http\Controllers\MatiereController;
 use App\Http\Controllers\NoteController;
+use App\Http\Controllers\NoteliController;
 use App\Http\Controllers\SecretaireController;
 use App\Http\Controllers\TrimestreController;
+use App\Models\Secretaire;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -54,6 +56,7 @@ Route::get('/dashboard', function () {
 
 require __DIR__.'/auth.php';
 
+Route::resource('secretaire',SecretaireController::class)->middleware(['auth']);
 
 Route::resource('anneesco',AnneescController::class)->middleware(['auth']);
 
@@ -73,8 +76,18 @@ Route::resource('listes',ListesController::class)->middleware(['auth']);
 
 Route::resource('note',NoteController::class)->middleware(['auth']);
 
-Route::get('/classeliste',[ClasseControllerliste1::class,'index'])->name('classeliste');
-Route::get('/classeliste1',[ClasseControllerliste1::class,'store'])->name('classeliste1');
+Route::resource('index',NoteliController::class)->middleware(['auth']);
+
+// Route::get('/classeliste',[ClasseControllerliste1::class,'index'])->name('classeliste');
+
+Route::get('/classeliste1',[ClasseControllerliste1::class,'liste'])->name('classeliste1');
+
+// Route::get('/eleve/delete/{id}',[ClasseControllerliste1::class,'delete']);
+// Route::post('/eleve/update/{id}',[ClasseControllerliste1::class,'update']);
+// Route::get('/eleve/update/{id}',[ClasseControllerliste1::class,'edit']);
+// Route::get('/eleve/{id}',[ClasseControllerliste1::class,'show']);
+
+
 Route::get('/list',[ClasseControllerliste1::class,'liste'])->name('list');
 
 Route::get('composition',[CompositionController::class,'index']);
@@ -98,9 +111,9 @@ Route::post('composition/fetch',[CompositionController::class,'fetch'])->name('c
 // Route::put('a#exampleModal/{annee}',[AnneController::class,'update'])->name('anneesco.update')->middleware(['auth']);
 
 
-Route::get('ajoutsecretaire',[CommunalController::class,'secret'])->name('ajout.secret')->middleware(['auth']);;
+// Route::get('ajoutsecretaire',[CommunalController::class,'secret'])->name('ajout.secret')->middleware(['auth']);;
 
-Route::post('ajoutsecretaire',[Elevescontrollers::class,'store'])->name('ajout.secretaire')->middleware(['auth']);;
+// Route::post('ajoutsecretaire',[Elevescontrollers::class,'store'])->name('ajout.secretaire')->middleware(['auth']);;
 
 
 

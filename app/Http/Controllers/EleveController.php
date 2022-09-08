@@ -6,6 +6,7 @@ use App\Models\Annee;
 use App\Models\Classe;
 use App\Models\Eleve;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class EleveController extends Controller
 {
@@ -80,9 +81,9 @@ class EleveController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Eleve $eleve)
     {
-        //
+        return view('eleve.carte',compact('eleves'));
     }
 
     /**
@@ -146,6 +147,7 @@ class EleveController extends Controller
      */
     public function destroy(Eleve $eleve)
     {
+        Storage::delete($eleve->photo);
         $eleve->delete();
         return back()->with('succesDelete','Suprimer avec succès');
     }

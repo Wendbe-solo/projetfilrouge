@@ -26,4 +26,9 @@ public function Devoir()
 
 }
 
+public function Matiere()
+{
+    return $this->belongsTo(Matiere::class, "matiere_id");
+}
+
 }

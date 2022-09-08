@@ -18,34 +18,24 @@
                 <thead>
                   <tr>
                     <th>N°</th>
-                    <th>Nom</th>
-                    <th>Prenom</th>
-                    <th class="hidden-phone">Annee</th>
+                    <th>Nom et Prénom</th>
+                    <th class="hidden-phone">Devoir</th>
                     <th class="hidden-phone">classe</th>
-                    <th class="hidden-phone">Gerne</th>
+                    <th class="hidden-phone">Note</th>
                     <th class="hidden-phone">Action</th>
                   </tr>
                 </thead>
                 <tbody>
-                @foreach($eleves as $eleve)
+                @foreach($notes as $note)
                   <tr class="gradeX">
                     <td>{{$loop->index + 1}}</td>
-                    <td>{{$eleve->nom}}</td>
-                    <td>{{$eleve->prenom}}</td>
-                    <td class="hidden-phone">{{$eleve->annee->annee}}</td>
-                    <td class="center hidden-phone">{{$eleve->classe->classe}}</td>
-                    <td class="center hidden-phone">{{$eleve->sexe}}</td>
+                    <td>{{$note->eleve->nom}} {{$note->eleve->prenom}}</td>
+                    <td>{{$note->devoir->libele}} de {{$note->devoir->matiere->matiere}}</td>
+                    <td class="hidden-phone">{{$note->devoir->classe->classe}}</td>
+                    <td class="center hidden-phone">{{$note->note}}</td>
                     <td>
               
-                <a class="btn btn-info" href="{{route('listee.edit',$eleve->id)}}">Editer</a>
-                <a class="btn btn-info" href="{{route('listee.show',$eleve->id)}}">Afficher</a>
-                <form id="form-{{$eleve->id}}"  action="{{route('listee.destroy',$eleve->id)}}" method="post">
-                    @csrf 
-                    <input type="hidden" name="_method" value="delete">
-
-                    @method('DELETE')
-                    <button class="btn btn-danger" onclick="if(confirm('Voulez-vous vraiment supprimer cet eleve?')){document.getElementById('form-{{$eleve->id}}').submit()}"  type="submit">Supprimer</button>
-                </form>
+               
             </td>
                   </tr>
                   @endforeach

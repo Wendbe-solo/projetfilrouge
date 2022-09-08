@@ -33,16 +33,16 @@
                     <label for="firstname" class="control-label col-lg-2">Devoir</label>
                     <div class="col-lg-10">
                       <select class="form-select form-select-lg mb-3" name="libele" aria-label=".form-select-lg example">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="8">8</option>
-                        <option value="8">9</option>
-                        <option value="8">10</option>
+                        <option value="1er">1</option>
+                        <option value="2ème">2</option>
+                        <option value="3ème">3</option>
+                        <option value="4ème">4</option>
+                        <option value="5ème">5</option>
+                        <option value="6ème">6</option>
+                        <option value="7ème">7</option>
+                        <option value="8ème">8</option>
+                        <option value="9ème">9</option>
+                        <option value="10ème">10</option>
                       </select>
                     </div>
                 </div>

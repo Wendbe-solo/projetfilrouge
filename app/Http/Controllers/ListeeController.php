@@ -6,6 +6,7 @@ use App\Models\Annee;
 use App\Models\Classe;
 use App\Models\Eleve;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ListeeController extends Controller
 {
@@ -18,10 +19,11 @@ class ListeeController extends Controller
     {
         // $classPk = 2;
         $eleves = Eleve ::orderBy('nom','asc')->get();
-        $classes = Classe ::orderBy('classe','asc')->get();
-        $annees = Annee ::orderBy('annee','asc')->get();
+        $classes = Classe ::all();
+        $annees = Annee ::all();
 
         return view('eleve.listee',compact(['eleves','annees','classes']));
+
         // $annee_id = Annee::orderBy('id', 'desc')->first()->id;
         // $classe_id = Classe::orderBy('id', 'desc')->first()->id;
         // $eleves = Eleve :: where('classe_id',$classe_id)->where('annee_id',$annee_id)->get();
@@ -95,9 +97,13 @@ class ListeeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show( $id)
     {
-        //
+        $eleves = DB::select('SELECT * FROM eleves WHERE id=?',[$id]);
+        $eleves = $eleves[0];
+        $classes = Classe::all();
+        $annees = Annee::all();
+        return view('eleve.show',compact(['eleves','annees','classes']));
     }
 
     /**
@@ -106,9 +112,13 @@ class ListeeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Eleve $elev)
+    public function edit($id)
     {
-        return view("eleve.listee",compact("eleves"));
+        $eleves = DB::select('SELECT * FROM eleves WHERE id=?', [$id] );
+        $eleves = $eleves[0];
+        $classes = Classe::all();
+        $annees = Annee::all();
+        return view("eleve.edite",compact('eleves','annees','classes'));
     }
 
     /**

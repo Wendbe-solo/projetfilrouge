@@ -96,9 +96,9 @@
               <span>Administration</span>
               </a>
             <ul class="sub1">
-              <li><a href="{{route('ajout.secret')}}">Ajouter un secretaitre</a></li>
+              <li><a href="{{route('secretaire.create')}}">Ajouter un secretaitre</a></li>
               <li><a href="{{route('ajouteleve.index')}}">Ajouter un eleve</a></li>
-              <li><a href="#">Liste des secretaire</a></li>
+              <li><a href="{{route('secretaire.index')}}">Liste des secretaire</a></li>
               <li><a href="{{route('listee.index')}}">Lister des eleves</a></li>
             </ul>
           </li>
@@ -110,7 +110,8 @@
             <ul class="sub1">
               <li><a href="{{route('listes.index')}}">Matiere</a></li>
               <li><a href="{{route('devoir.index')}}">Devoir</a></li>
-              <li><a href="{{route('note.index')}}">Note</a></li> 
+              <li><a href="{{route('note.index')}}">Note</a></li>
+              <li><a href="{{route('index.index')}}">Note des élèves</a></li>  
             </ul>
           </li>
           <li class="couleur3 sub-menu">
@@ -181,8 +182,7 @@
        */
       var nCloneTh = document.createElement('th');
       var nCloneTd = document.createElement('td');
-      nCloneTd.innerHTML = '<img src="lib/advanced-datatable/images/details_open.png">';
-      nCloneTd.className = "center";
+
 
       $('#hidden-table-info thead tr').each(function() {
         this.insertBefore(nCloneTh, this.childNodes[0]);

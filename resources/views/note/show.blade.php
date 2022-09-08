@@ -4,6 +4,8 @@
 
     <section id="main-content">
       <section class="wrapper">
+
+    
         <!-- /row -->
         <div class="row mt">
           <div class="col-lg-12">
@@ -32,6 +34,8 @@
 
                   <div class="alert alert-success">{{$success}} </div>
                 @endif
+
+           
                     <form class="cmxform form-horizontal style-form" id="signupForm" method="POST" action="{{route('note.store')}}">
                     @csrf
                         <table class="table table-bordered table-hover">
@@ -39,7 +43,7 @@
                                   <tr>
                                   <th scope="col">N°</th>
                                   <th scope="col">Nom et prenom</th>
-                                  <th scope="col">devoir</th>
+                                  <th scope="col">Devoir</th>
                                   <th scope="col">Note</th>
 
                                   </tr>
@@ -47,19 +51,28 @@
                               <tbody>
                                 
                               @foreach($eleves as $eleve)
-                              @foreach($devoirs as $devoir)
+                              
 
                                   <tr>
                                   <th scope="row">{{$loop->index + 1}}</th>
-                                  <td name="eleve_id[]" value="{{$eleve->id}}" type="text">{{$eleve->nom}} {{$eleve->prenom}}</td>
-                                  <td  name="devoir_id[]" value="{{$devoir->id}}" type="text">{{$devoir->classe->classe}} {{$devoir->libele}} {{$devoir->matiere->matiere}}</td>
+                                  <td > <input name="eleve_id[]" value="{{$eleve->id}}" type="text"> {{$eleve->nom}} {{$eleve->prenom}}</td>
+                                  <td > 
+                                    
+                                  <select name="devoir_id[]"  type="text" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" >
+                                          <option value=""></option>
 
+                                          @foreach($devoirs as $devoir)
+                                        <option value="{{$devoir->id}}"> {{$devoir->classe->classe}} {{$devoir->libele}} {{$devoir->matiere->matiere}}</option>
+                                        
+
+                                        @endforeach 
+                                        </select>
+                                  <td>
                                   <td><input  name="note[]" type="text" /></td>
                                   </tr>
 
                                   </tr> 
-
-                                  @endforeach 
+                        
                                   @endforeach 
                       
                               </tbody>

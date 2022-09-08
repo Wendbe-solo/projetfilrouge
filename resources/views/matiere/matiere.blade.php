@@ -63,7 +63,7 @@
 
                 <div class="form-group ">
                     <label for="firstname" class="control-label col-lg-2">Annee</label>
-                    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="annee_id" id="">
+                    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="annee_id" id="annee">
                   <option value=""></option>
 
                 @foreach ($annees as $annee)
@@ -75,12 +75,10 @@
 
                 <div class="form-group ">
                     <label for="firstname" class="control-label col-lg-2">Classe</label>
-                    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="classe_id" id="">
-                  <option value=""></option>
+                    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="classe_id" id="classe">
+                  <option value="">Classe</option>
 
-                @foreach ($classes as $classe)
-                <option value="{{$classe->id}}"> {{$classe->classe}}</option>
-                @endforeach
+
 
                 </select>
                 </div>
@@ -89,6 +87,7 @@
                         <div class="col-lg-offset-2 col-lg-10">
                         <button class="btn btn-theme" type="submit">Save</button>
                         <button class="btn btn-theme04" type="button">Cancel</button>
+                        <button class="btn btn-primary rounded" name="search" id="search" type="submit">Recherche <i class="fa fa-search"></i></button>
                         </div>
                     </div>
                 </form>
@@ -146,7 +145,34 @@
     </section>
 
 
+<script type="text/javascript">
+  jQuery(document).ready(function()
+  {
+      jQuery('select[annee="annee"]').on('change',function()
+      {
+        var anneeID = jQuery(this).val();
+          if(anneeID){
+            jQuery.ajax({
+              url : '/getclasse/' +anneeID,
+              type : "GET",
+              dataType : "json",
+              success:function(data)
+              {
+                jQuery('select[classe="classe"]').empty();
+                jQuery.each(data,function(key,value){
+                  $('select[classe="classe"]').append('<option value="'+ key +'"</option>');
+                });
+              }
+            });
+          }
+          else
+          {
+            $('select[classe="classe"]').empty();
+          }
+      });
+  });
 
+</script>
 
 
 

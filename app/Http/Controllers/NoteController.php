@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Classe;
 use App\Models\Devoir;
 use App\Models\Eleve;
 use App\Models\Note;
@@ -19,13 +20,21 @@ class NoteController extends Controller
     public function index()
 
     {
+        
+        // $eleves = Eleve ::where('classe_id',1)->get();
+
+        // $devoirs = Devoir ::where('classe_id',1)->where('libele',1)->get();
+
+
         $notes = Note ::all();
 
         $eleves = Eleve ::orderBy('nom','asc')->get();
 
-        $devoirs = Devoir ::orderBy('libele','asc')->get();
+        $classes = Classe ::all();
+
+        // $eleves = Eleve ::where('classe_id',2)->get();
         
-        return view('note.note',compact('notes','eleves','devoirs'));
+        return view('note.index',compact('eleves','classes'));
     }
 
     /**
@@ -35,7 +44,7 @@ class NoteController extends Controller
      */
     public function create()
     {
-        return view('note.note');
+        return view('note.show');
     }
 
     /**
@@ -51,17 +60,16 @@ class NoteController extends Controller
         $devoir_id = $request->devoir_id;
         $note = $request->note;
 
-        for($i=0;$i<count($eleve_id); $i++){
+        for($i=0;$i < count ($eleve_id); $i++){
 
             $databasave= [
-                'eleve_id' =>$eleve_id,
-                'devoir_id' =>$devoir_id,
-                'note' =>$note,
+                'eleve_id' =>$eleve_id[$i],
+                'devoir_id' =>$devoir_id[$i],
+                'note' =>$note[$i],
             ];
             DB::table('notes')->insert($databasave);
         }
-        Session::put('success',"Save Data Successfully !");
-        return back();
+        return back()->with("success","Enregistrer avec succès");
         // $request->validate([
         //     "eleve_id"=>"required",
         //     "devoir_id"=>"required",
@@ -81,9 +89,13 @@ class NoteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($classe_id)
     {
-        //
+        $eleves = DB::select('SELECT * FROM eleves WHERE classe_id=?',[$classe_id]);
+
+       $devoirs = Devoir ::where('classe_id',$classe_id)->get();
+       
+        return view('note.show',compact(['eleves','devoirs']));
     }
 
     /**

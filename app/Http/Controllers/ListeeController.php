@@ -20,9 +20,8 @@ class ListeeController extends Controller
         // $classPk = 2;
         $eleves = Eleve ::orderBy('nom','asc')->get();
         $classes = Classe ::all();
-        $annees = Annee ::all();
 
-        return view('eleve.listee',compact(['eleves','annees','classes']));
+        return view('eleve.listee',compact(['eleves','classes']));
 
         // $annee_id = Annee::orderBy('id', 'desc')->first()->id;
         // $classe_id = Classe::orderBy('id', 'desc')->first()->id;
@@ -102,8 +101,7 @@ class ListeeController extends Controller
         $eleves = DB::select('SELECT * FROM eleves WHERE id=?',[$id]);
         $eleves = $eleves[0];
         $classes = Classe::all();
-        $annees = Annee::all();
-        return view('eleve.show',compact(['eleves','annees','classes']));
+        return view('eleve.show',compact(['eleves','classes']));
     }
 
     /**

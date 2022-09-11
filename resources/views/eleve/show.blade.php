@@ -37,43 +37,52 @@
                         
                     </div>
 
+                    <div class="flex">
+
+                    
+
                     <div class="civile">
                     <table>
                       
                 
                             <tr>
                                 <td class="gras">Matricule</td>
-                                <td>{{$eleves->matricule}}</td>
+                                <td class="nom">{{$eleves->matricule}}</td>
                             </tr>
                             <tr>
                                 <td class="gras">Nom et Prenom</td>
-                                <td>{{$eleves->nom}} {{$eleves->prenom}}</td>
+                                <td class="nom">{{$eleves->nom}} {{$eleves->prenom}}</td>
                             </tr>
                             <tr>
                                 <td class="gras">Sexe</td>
-                                <td>{{$eleves->sexe}}</td>
+                                <td class="nom">{{$eleves->sexe}}</td>
                             </tr>
                             <tr>
                                 <td class="gras">Date et lieu de naissance</td>
-                                <td>{{$eleves->date_naissance}} {{$eleves->lieu}}</td>
+                                <td class="nom">{{$eleves->date_naissance}} {{$eleves->lieu}}</td>
                             </tr>
                             <tr>
                                 <td class="gras">Classe</td>
-                                <td>{{$eleves->classe_id}}</td>
-                            </tr>
-                            <tr>
-                                <td class="gras">Annee</td>
-                                <td>{{$eleves->annee_id}}</td>
+                                <td class="nom">{{$eleves->classe_id}} </td>
                             </tr>
                             <tr>
                                 <td class="gras">Personne a prevenir</td>
-                                <td>{{$eleves->pere}} {{$eleves->numero}}</td>
+                                <td class="nom">{{$eleves->pere}} {{$eleves->numero}} </td>
                             </tr>
                             
 
                         </table>
 
+                    
                     </div>
+
+                        <div class="col-md-4 photo">
+                            <img src="{{asset('img/'.$eleves->photo)}}" alt="" width='100%'>
+                        </div>
+
+
+                        </div>
+
 
                 </div>
 

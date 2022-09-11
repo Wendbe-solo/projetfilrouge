@@ -12,7 +12,6 @@ class Matiere extends Model
         "matiere",
         "coeficient",
         "professeur",
-        "annee_id",
         "classe_id",
     ];
 

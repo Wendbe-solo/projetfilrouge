@@ -48,24 +48,35 @@
                 </div>
 
                 <div class="form-group ">
-                    <label for="firstname" class="control-label col-lg-2">Classe</label>
-                    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="classe_id" id="">
+                    <label for="firstname" class="control-label col-lg-2">Matiere</label>
+                    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="matiere_id" id="">
                   <option value=""></option>
 
-                @foreach ($classes as $classe)
-                <option value="{{$classe->id}}"> {{$classe->classe}}</option>
+                @foreach ($matieres as $matiere)
+                <option value="{{$matiere->id}}"> {{$matiere->matiere}} {{$matiere->classe->classe}} </option>
+                @endforeach
+
+                </select>
+                </div>
+                <div class="form-group ">
+                    <label for="firstname" class="control-label col-lg-2">Trimestre</label>
+                    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="trimestre_id" id="">
+                  <option value=""></option>
+
+                @foreach ($trimestres as $trimestre)
+                <option value="{{$trimestre->id}}"> {{$trimestre->trimestre}}</option>
                 @endforeach
 
                 </select>
                 </div>
 
                 <div class="form-group ">
-                    <label for="firstname" class="control-label col-lg-2">Matiere</label>
-                    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="matiere_id" id="">
-                  <option value=""></option>
+                    <label for="firstname" class="control-label col-lg-2">Classe</label>
+                    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="classe_id" id="classe">
+                  <option value="">Classe</option>
 
-                @foreach ($matieres as $matiere)
-                <option value="{{$matiere->id}}"> {{$matiere->matiere}}</option>
+                  @foreach ($classes as $classe)
+                <option value="{{$classe->id}}"> {{$classe->classe}}</option>
                 @endforeach
 
                 </select>
@@ -104,7 +115,7 @@
             <th scope="row">{{$loop->index + 1}}</th>
             <td>{{$devoir->libele}}</td>
             <td>{{$devoir->matiere->matiere}}</td>
-            <td>{{$devoir->classe->classe}}</td>
+            <td>{{$devoir->matiere->classe->classe}}</td>
             <td>{{$devoir->created_at}}</td>
             <td>
                 <a href="" class="btn btn-info">Editer</a>

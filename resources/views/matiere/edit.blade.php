@@ -25,27 +25,27 @@
         </ul>
         @endif
               <div class="form">
-                <form class="cmxform form-horizontal style-form" id="signupForm" method="post" action="{{route('matiere.store')}}">
+                <form class="cmxform form-horizontal style-form" id="signupForm" method="post" action="{{route('matiere.update',$matiere->id)}}">
                 @csrf
 
                 <div class="form-group ">
                     <label for="firstname" class="control-label col-lg-2">Matiere</label>
                     <div class="col-lg-10">
-                      <input class=" form1" id="firstname" name="matiere" type="text" />
+                      <input class=" form1" id="firstname" value="{{$matiere->matiere}}" name="matiere" type="text" />
                     </div>
                 </div>
 
                 <div class="form-group ">
                     <label for="firstname" class="control-label col-lg-2">Professeur</label>
                     <div class="col-lg-10">
-                      <input class=" form1" id="firstname" name="professeur" type="text" />
+                      <input class=" form1" id="firstname" value="{{$matiere->professeur}}" name="professeur" type="text" />
                     </div>
                 </div>
 
                 <div class="form-group ">
                     <label for="firstname" class="control-label col-lg-2">Coeficient</label>
                     <div class="col-lg-10">
-                      <select class="form-select form-select-lg mb-3" name="coeficient" aria-label=".form-select-lg example">
+                      <select class="form-select form-select-lg mb-3" value="{{$matiere->coeficient}}" name="coeficient" aria-label=".form-select-lg example">
                         <option selected>Choisir</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -87,80 +87,13 @@
           </div>
           <!-- /col-lg-12 -->
         </div>
-
-        <div class="center">
-            <table class="table table-bordered table-hover">
-        <thead>
-            <tr>
-            <th scope="col">N°</th>
-            <th scope="col">Matiere</th>
-            <th scope="col">Professeur</th>
-            <th scope="col">Coeficient</th>
-            <th scope="col">Classe</th>
-            <th scope="col">Date</th>
-            <th scope="col">Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach($matieres as $matiere)
-            <tr>
-            <th scope="row">{{$loop->index + 1}}</th>
-            <td>{{$matiere->matiere}}</td>
-            <td>{{$matiere->professeur}}</td>
-            <td>{{$matiere->coeficient}}</td>
-            <td>{{$matiere->classe->classe}}</td>
-            <td>{{$matiere->created_at}}</td>
-            <td>
-            <a href="{{route('matiere.edit',['matiere'=>$matiere->id])}}" class="btn btn-info">Editer</a>
-                
-
-                <form id="form-{{$matiere->id}}"  action="{{route('matiere.destroy',$matiere->id)}}" method="post">
-                    @csrf 
-                    <input type="hidden" name="_method" value="delete">
-
-                    @method('DELETE')
-                    <button class="btn btn-danger" onclick="if(confirm('Voulez-vous vraiment supprimer cette matiere?')){document.getElementById('form-{{$matiere->id}}').submit()}"  type="submit">Supprimer</button>
-                </form>
-            </td>
-            </tr>  
-            @endforeach
-        </tbody>
-        </table>
-        </div>
         <!-- /row -->
       </section>
       <!-- /wrapper -->
     </section>
 
 
-<script type="text/javascript">
-  jQuery(document).ready(function()
-  {
-      jQuery('select[annee="annee"]').on('change',function()
-      {
-        var anneeID = jQuery(this).val();
-          if(anneeID){
-            jQuery.ajax({
-              url : '/getclasse/' +anneeID,
-              type : "GET",
-              dataType : "json",
-              success:function(data)
-              {
-                jQuery('select[classe="classe"]').empty();
-                jQuery.each(data,function(key,value){
-                  $('select[classe="classe"]').append('<option value="'+ key +'"</option>');
-                });
-              }
-            });
-          }
-          else
-          {
-            $('select[classe="classe"]').empty();
-          }
-      });
-  });
 
-</script>
 
 
 

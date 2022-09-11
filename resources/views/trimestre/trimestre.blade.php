@@ -28,12 +28,19 @@
                 <form class="cmxform form-horizontal style-form" id="signupForm" method="post" action="{{route('trimestre.store')}}">
                 @csrf
 
+                
+
                 <div class="form-group ">
-                    <label for="firstname" class="control-label col-lg-2">Trimestre</label>
+                    <label for="firstname" class="control-label col-lg-2">Annee</label>
                     <div class="col-lg-10">
-                      <input class=" form1" id="firstname" name="trimestre" type="text" />
-                    </div>
-                </div>
+                    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="trimestre" id="">
+                  <option value=""></option>
+                <option value="Premier Trimestre">Premier Trimestre </option>
+                <option value="Deuxième Trimestre">Deuxième Trimestre </option>
+                <option value="Troisième Trimestre">Troisième Trimestre </option>
+                <option value="Premier Semestre">Premier Semestre </option>
+                <option value="deuxieme Semestre"> deuxieme Semestre</option>
+                </select>
 
                 <div class="form-group ">
                     <label for="firstname" class="control-label col-lg-2">Annee</label>
@@ -82,7 +89,7 @@
             <td>{{$trimestre->annee->annee}}</td>
             <td>{{$trimestre->created_at}}</td>
             <td>
-                <a href="" class="btn btn-info">Editer</a>
+            <a href="{{route('trimestre.edit',['trimestre'=>$trimestre->id])}}" class="btn btn-info">Editer</a>
                 <form id="form-{{$trimestre->id}}"  action="{{route('trimestre.destroy',$trimestre->id)}}" method="post">
                     @csrf 
                     <input type="hidden" name="_method" value="delete">

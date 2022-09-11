@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMoyennesTable extends Migration
+class CreateMoyennematieresTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreateMoyennesTable extends Migration
      */
     public function up()
     {
-        Schema::create('moyennes', function (Blueprint $table) {
+        Schema::create('moyennematieres', function (Blueprint $table) {
             $table->id();
             $table->foreignId('eleve_id')->constrained();
+            $table->foreignId('matiere_id')->constrained();
             $table->foreignId('trimestre_id')->constrained();
-            $table->string('moyenne');
+            $table->string('moyennematiere');
             $table->string('pondere');
             $table->timestamps();
         });
@@ -30,6 +31,6 @@ class CreateMoyennesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('moyennes');
+        Schema::dropIfExists('moyennematieres');
     }
 }

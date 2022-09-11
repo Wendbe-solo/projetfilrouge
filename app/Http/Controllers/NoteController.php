@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Classe;
 use App\Models\Devoir;
 use App\Models\Eleve;
+use App\Models\Matiere;
 use App\Models\Note;
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
@@ -31,6 +32,9 @@ class NoteController extends Controller
         $eleves = Eleve ::orderBy('nom','asc')->get();
 
         $classes = Classe ::all();
+
+        $matieres = Matiere::all();
+        $devoirs = Devoir::all();
 
         // $eleves = Eleve ::where('classe_id',2)->get();
         
@@ -92,10 +96,14 @@ class NoteController extends Controller
     public function show($classe_id)
     {
         $eleves = DB::select('SELECT * FROM eleves WHERE classe_id=?',[$classe_id]);
+        
 
-       $devoirs = Devoir ::where('classe_id',$classe_id)->get();
+    //    $devoirs = Devoir ::all()->where('matiere_id',$classe_id);
+        $devoirs = Devoir ::where('classe_id',$classe_id)->get();
+        $matieres = Matiere ::where('classe_id',$classe_id)->get();
+      
        
-        return view('note.show',compact(['eleves','devoirs']));
+        return view('note.show',compact(['eleves','devoirs','matieres'])); 
     }
 
     /**

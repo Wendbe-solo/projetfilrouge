@@ -14,10 +14,12 @@ use App\Http\Controllers\HomeControllers;
 use App\Http\Controllers\ListeeController;
 use App\Http\Controllers\ListesController;
 use App\Http\Controllers\MatiereController;
+use App\Http\Controllers\MoyennematiereController;
 use App\Http\Controllers\NoteController;
 use App\Http\Controllers\NoteliController;
 use App\Http\Controllers\SecretaireController;
 use App\Http\Controllers\TrimestreController;
+use App\Models\Moyennematiere;
 use App\Models\Secretaire;
 use Illuminate\Support\Facades\Route;
 
@@ -77,6 +79,8 @@ Route::resource('listes',ListesController::class)->middleware(['auth']);
 Route::resource('note',NoteController::class)->middleware(['auth']);
 
 Route::resource('index',NoteliController::class)->middleware(['auth']);
+
+Route::resource('moyennematiere',MoyennematiereController::class)->middleware(['auth']);
 
 // Route::get('/classeliste',[ClasseControllerliste1::class,'index'])->name('classeliste');
 

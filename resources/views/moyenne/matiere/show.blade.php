@@ -50,24 +50,13 @@
                               </thead>
                               <tbody>
                                 
-                              @foreach($eleves as $eleve)
+                              @foreach($notes as $note)
                               
 
                                   <tr>
                                   <th scope="row">{{$loop->index + 1}}</th>
-                                  <td > <input name="eleve_id[]" value="{{$eleve->id}}" type="text"> {{$eleve->nom}} {{$eleve->prenom}}</td>
-                                  <td > 
-                                    
-                                  <select name="devoir_id[]"  type="text" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" >
-                                          <option value=""></option>
-
-                                          @foreach($devoirs as $devoir)
-                                        <option value="{{$devoir->id}}"> {{$devoir->matiere->classe->classe}} {{$devoir->libele}} {{$devoir->matiere->matiere}}</option>
-                                        
-
-                                        @endforeach 
-                                        </select>
-                                  <td>
+                                  <td > <input name="matiere_id[]" value="{{$note->devoir->matiere_id}}" type="text"> {{$note->devoir->matiere->matiere}}</td>
+                                  <td>{{$note->devoir->matiere_id}}</td>
                                   <td><input  name="note[]" type="text" /></td>
                                   </tr>
 

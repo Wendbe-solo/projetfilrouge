@@ -18,6 +18,7 @@ class CreateDevoirsTable extends Migration
             $table->string('libele');
             $table->foreignId('classe_id')->constrained();
             $table->foreignId('matiere_id')->constrained();
+            $table->foreignId('trimestre_id')->constrained();
             $table->timestamps();
         });
     }

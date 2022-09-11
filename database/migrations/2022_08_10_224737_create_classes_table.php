@@ -15,7 +15,7 @@ class CreateClassesTable extends Migration
     {
         Schema::create('classes', function (Blueprint $table) {
             $table->id();
-            $table->string('classe');
+            $table->string('classe')->unique();
             $table->foreignId('annee_id')->constrained();
             $table->timestamps();
         });

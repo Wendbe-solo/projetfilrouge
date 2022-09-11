@@ -26,13 +26,13 @@
         </ul>
         @endif
               <div class="form">
-                <form class="cmxform form-horizontal style-form" id="signupForm" method="post" action="{{route('anneesco.store')}}">
+              <form method="post" action="{{route('anneesco.update',$annee->id)}}">
                 @csrf
 
                 <div class="form-group ">
                     <label for="firstname" class="control-label col-lg-2">Annee</label>
                     <div class="col-lg-10">
-                      <input class="form1" id="firstname" name="annee" type="text" />
+                      <input class="form1" id="firstname" name="annee" value="{{$annee->annee}}" type="text" />
                     </div>
                 </div>
 
@@ -50,38 +50,6 @@
           <!-- /col-lg-12 -->
         </div>
         <!-- /row -->
-        <div class="center">
-            <table class="table table-bordered table-hover">
-        <thead>
-            <tr>
-            <th scope="col">N°</th>
-            <th scope="col">Annee scolaire</th>
-            <th scope="col">Date</th>
-            <th scope="col">Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach($annees as $annee)
-            <tr>
-            <th scope="row">{{$loop->index + 1}}</th>
-            <td>{{$annee->annee}}</td>
-            <td>{{$annee->created_at}}</td>
-            <td>
-       
-            <a href="{{route('anneesco.edit',['anneesco'=>$annee->id])}}" class="btn btn-info">Editer</a>
-                <form id="form-{{$annee->id}}"  action="{{route('anneesco.destroy',$annee->id)}}" method="post">
-                    @csrf 
-                    <input type="hidden" name="_method" value="delete">
-
-                    @method('DELETE')
-                    <button class="btn btn-danger" onclick="if(confirm('Voulez-vous vraiment supprimer cet annee?')){document.getElementById('form-{{$annee->id}}').submit()}"  type="submit">Supprimer</button>
-                </form>
-            </td>
-            </tr>  
-            @endforeach
-        </tbody>
-        </table>
-        </div>
 
       </section>
       <!-- /wrapper -->

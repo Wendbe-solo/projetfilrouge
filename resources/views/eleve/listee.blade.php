@@ -20,7 +20,6 @@
                     <th>N°</th>
                     <th>Nom</th>
                     <th>Prenom</th>
-                    <th class="hidden-phone">Annee</th>
                     <th class="hidden-phone">classe</th>
                     <th class="hidden-phone">Gerne</th>
                     <th class="hidden-phone">Action</th>
@@ -32,7 +31,6 @@
                     <td>{{$loop->index + 1}}</td>
                     <td>{{$eleve->nom}}</td>
                     <td>{{$eleve->prenom}}</td>
-                    <td class="hidden-phone">{{$eleve->annee->annee}}</td>
                     <td class="center hidden-phone">{{$eleve->classe->classe}}</td>
                     <td class="center hidden-phone">{{$eleve->sexe}}</td>
                     <td>

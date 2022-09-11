@@ -68,9 +68,11 @@ class TrimestreController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Trimestre $trimestre)
+    public function edit($id)
     {
-        return view("trimestre.trimestre",compact("trimestres"));
+        $trimestre = Trimestre::find($id);
+        $annees = Annee::all();
+        return view("trimestre.edit",compact("trimestre","annees"));
     }
 
     /**
@@ -80,18 +82,17 @@ class TrimestreController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,Trimestre $trimestre)
+    public function update(Request $request,$id)
     {
         $request->validate([
             "trimestre"=>"required",
             "annee_id"=>"required"
     
         ]);
-        $trimestre->update([
-            "trimestre"=>$request->trimestre,
-            "annee_id"=>$request->annee_id
-
-        ]);
+        $trimestre= Trimestre::find($id);
+        $trimestre->trimestre= $request->get('trimestre');
+        $trimestre->annee_id= $request->get('annee_id');
+        $trimestre->save();
         return back()->with("success","matiere mise a jour avec succès");
     }
 

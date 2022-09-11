@@ -25,13 +25,13 @@
         </ul>
         @endif
               <div class="form">
-                <form class="cmxform form-horizontal style-form" id="signupForm" method="post" action="{{route('classe.store')}}">
+                <form class="cmxform form-horizontal style-form" id="signupForm" method="post" action="{{route('trimestre.update',$trimestre->id)}}">
                 @csrf
 
                 <div class="form-group ">
-                    <label for="firstname" class="control-label col-lg-2">Classe</label>
+                    <label for="firstname" class="control-label col-lg-2">Trimestre</label>
                     <div class="col-lg-10">
-                      <input class=" form1" id="firstname" name="classe" type="text" />
+                      <input class=" form1" id="firstname" value="{{$trimestre->trimestre}}" name="trimestre" type="text" />
                     </div>
                 </div>
 
@@ -61,39 +61,7 @@
         </div>
         <!-- /row -->
 
-        <div class="center">
-            <table class="table table-bordered table-hover">
-        <thead>
-            <tr>
-            <th scope="col">N°</th>
-            <th scope="col">Classe</th>
-            <th scope="col">Annee</th>
-            <th scope="col">Date Inscription</th>
-            <th scope="col">Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach($classes as $classe)
-            <tr>
-            <th scope="row">{{$loop->index + 1}}</th>
-            <td>{{$classe->classe}}</td>
-            <td>{{$classe->annee->annee}}</td>
-            <td>{{$classe->created_at}}</td>
-            <td>
-            <a href="{{route('classe.edit',['classe'=>$classe->id])}}" class="btn btn-info">Editer</a>
-                <form id="form-{{$classe->id}}"  action="{{route('classe.destroy',$classe->id)}}" method="post">
-                    @csrf 
-                    <input type="hidden" name="_method" value="delete">
-
-                    @method('DELETE')
-                    <button class="btn btn-danger" onclick="if(confirm('Voulez-vous vraiment supprimer cet annee?')){document.getElementById('form-{{$annee->id}}').submit()}"  type="submit">Supprimer</button>
-                </form>
-            </td>
-            </tr>  
-            @endforeach
-        </tbody>
-        </table>
-        </div>
+        
       </section>
       <!-- /wrapper -->
     </section>

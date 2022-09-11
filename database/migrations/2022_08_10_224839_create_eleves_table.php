@@ -15,7 +15,7 @@ class CreateElevesTable extends Migration
     {
         Schema::create('eleves', function (Blueprint $table) {
             $table->id();
-            $table->string('matricule');
+            $table->string('matricule')->unique();
             $table->string('nom');
             $table->string('prenom');
             $table->string('date_naissance');
@@ -24,7 +24,6 @@ class CreateElevesTable extends Migration
             $table->string('pere');
             $table->string('mere');
             $table->string('numero');
-            $table->foreignId('annee_id')->constrained();
             $table->foreignId('classe_id')->constrained();
             $table->string('photo');
 

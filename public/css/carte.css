@@ -20,12 +20,13 @@
     text-align: center;
     font-family: Georgia, 'Times New Roman', Times, serif;
     font-size: 15px;
+    margin-top: 15px;
 }
 
 .devise{
     text-align: center;
     border: 2px blue solid;
-    
+    width: 90%;
    height: 25px;
    font-size: 12px;
     font-family: 'Times New Roman', Times, serif;
@@ -68,12 +69,22 @@
     font-family: 'Times New Roman', Times, serif;
     font-weight: 700;
 }
-
+.nom{
+    font-weight: 300;
+}
 
 .civile{
-    margin-left: 10px;
-    background-image: url(/img/burkina.png);
+    margin-left: 20px;
+   
+    
+}
+
+.flex{
+    display: flex;
+    background-image: url(/img/burkina.png)  ;
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: 27%;
+    background-position: center;
+    background-color: rgba(0,0,0,0,4);
     vertical-align: top;
 }

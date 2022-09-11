@@ -15,7 +15,7 @@ class CreateTrimestresTable extends Migration
     {
         Schema::create('trimestres', function (Blueprint $table) {
             $table->id();
-            $table->string('trimestre');
+            $table->string('trimestre')->unique();
             $table->foreignId('annee_id')->constrained();
             $table->timestamps();
         });

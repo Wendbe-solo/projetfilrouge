@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Classe;
 use App\Models\Devoir;
 use App\Models\Matiere;
+use App\Models\Trimestre;
 use Illuminate\Http\Request;
 
 class DevoirController extends Controller
@@ -19,11 +20,13 @@ class DevoirController extends Controller
         $devoirs = Devoir ::orderBy('libele','asc')->get();
 
         $matieres = Matiere ::orderBy('matiere','asc')->get();
-
         $classes = Classe ::orderBy('classe','asc')->get();
 
+        $trimestres = Trimestre ::orderBy('trimestre','asc')->get();
+
         
-        return view('devoir.devoir',compact('devoirs','matieres','classes'));
+        return view('devoir.devoir',compact('devoirs','matieres','trimestres','classes'));
+
     }
 
     /**
@@ -46,13 +49,15 @@ class DevoirController extends Controller
     {
         $request->validate([
             "libele"=>"required",
+            "matiere_id"=>"required",
             "classe_id"=>"required",
-            "matiere_id"=>"required"
+            "trimestre_id"=>"required"
         ]);
         Devoir::create([
             "libele"=>$request->libele,
-            "classe_id"=>$request->classe_id,
             "matiere_id"=>$request->matiere_id,
+            "classe_id"=>$request->classe_id,
+            "trimestre_id"=>$request->trimestre_id,
         ]);
         return back()->with("success","Enregistrer avec succès");
     }

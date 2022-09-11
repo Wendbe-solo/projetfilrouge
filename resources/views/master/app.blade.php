@@ -97,7 +97,7 @@
               </a>
             <ul class="sub1">
               <li><a href="{{route('secretaire.create')}}">Ajouter un secretaitre</a></li>
-              <li><a href="{{route('ajouteleve.index')}}">Ajouter un eleve</a></li>
+              <li><a href="{{route('ajouteleve.create')}}">Ajouter un eleve</a></li>
               <li><a href="{{route('secretaire.index')}}">Liste des secretaire</a></li>
               <li><a href="{{route('listee.index')}}">Lister des eleves</a></li>
             </ul>
@@ -112,6 +112,9 @@
               <li><a href="{{route('devoir.index')}}">Devoir</a></li>
               <li><a href="{{route('note.index')}}">Note</a></li> 
               <li><a href="{{route('index.index')}}">Note des élèves</a></li> 
+              <li><a href="{{route('moyennematiere.index')}}">Moyenne par matiere</a></li> 
+              <li><a href="">Moyenne par trimestre</a></li> 
+              <li><a href="">Moyenne par annuelle</a></li> 
             </ul>
           </li>
           <li class="couleur3 sub-menu">

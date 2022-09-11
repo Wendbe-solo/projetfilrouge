@@ -67,9 +67,11 @@ class AnneescController extends Controller
      * @param  \App\Models\anneesco  $anneesco
      * @return \Illuminate\Http\Response
      */
-    public function edit(Annee $annee)
+    public function edit($id)
     {
-        return view("annee.anneesco",compact("annees"));
+        $annee = Annee::find($id);
+        
+        return view("annee.edit",compact("annee"));
     }
 
     /**
@@ -79,16 +81,17 @@ class AnneescController extends Controller
      * @param  \App\Models\anneesco  $anneesco
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Annee $annee)
+    public function update(Request $request, $id)
     {
         $request->validate([
             "annee"=>"required",
     
         ]);
-        $annee->update([
-            "annee"=>$request->annee
+        $annee= Annee::find($id);
+        $annee->annee= $request->get('annee');
+        $annee->save();
 
-        ]);
+       
         return back()->with("success","annee mise a jour avec succès");
     
     }
@@ -99,8 +102,9 @@ class AnneescController extends Controller
      * @param  \App\Models\anneesco  $anneesco
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Annee $annee)
+    public function destroy($id)
     {
+        $annee = Annee::find($id);
         $annee->delete();
         return back()->with('succesDelete','Suprimer avec succès');
     }

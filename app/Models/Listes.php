@@ -18,16 +18,9 @@ class Listes extends Model
         "pere",
         "mere",
         "numero",
-        "annee_id",
         "classe_id",
         "photo",
     ];
-
-
-    public function Annee()
-    {
-        return $this->belongsTo(Annee::class, "annee_id");
-    }
 
     public function Classe()
     {

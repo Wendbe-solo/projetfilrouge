@@ -46,14 +46,12 @@ class MatiereController extends Controller
             "matiere"=>"required",
             "coeficient"=>"required",
             "professeur"=>"required",
-            "annee_id"=>"required",
             "classe_id"=>"required" 
         ]);
         Matiere::create([
             "matiere"=>$request->matiere,
             "coeficient"=>$request->coeficient,
             "professeur"=>$request->professeur,
-            "annee_id"=>$request->annee_id,
             "classe_id"=>$request->classe_id
         ]);
         return back()->with("success","Enregistrer avec succès");
@@ -76,9 +74,12 @@ class MatiereController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Matiere $matiere)
+    public function edit($id)
     {
-        return view("matiere.matiere",compact("matieres"));
+
+        $matiere = Matiere::find($id);
+        $classes = Classe::all();
+        return view("matiere.edit",compact("matiere","classes"));
     }
 
     /**
@@ -88,22 +89,21 @@ class MatiereController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,Matiere $matiere)
+    public function update(Request $request,$id)
     {
         $request->validate([
             "matiere"=>"required",
             "coeficient"=>"required",
-            "annee_id"=>"required",
+            "professeur"=>"required",
             "classe_id"=>"required" 
     
         ]);
-        $matiere->update([
-            "matiere"=>$request->matiere,
-            "coeficient"=>$request->coeficient,
-            "annee_id"=>$request->annee_id,
-            "classe_id"=>$request->classe_id
-
-        ]);
+        $matiere= Matiere::find($id);
+        $matiere->matiere= $request->get('matiere');
+        $matiere->coeficient= $request->get('coeficient');
+        $matiere->professeur= $request->get('professeur');
+        $matiere->classe_id= $request->get('classe_id');
+        $matiere->save();
         return back()->with("success","matiere mise a jour avec succès");
     }
 

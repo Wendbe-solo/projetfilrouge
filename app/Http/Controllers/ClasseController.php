@@ -68,9 +68,11 @@ class ClasseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Classe $classe)
+    public function edit($id)
     {
-        return view("classe.classe",compact("classes"));
+        $classe = Classe::find($id);
+        $annees = Annee::all();
+        return view("classe.edit",compact("classe","annees"));
     }
 
     /**
@@ -80,16 +82,17 @@ class ClasseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Classe $classe)
+    public function update(Request $request,$id)
     {
         $request->validate([
             "classe"=>"required",
+            "annee_id"=>"required",
     
         ]);
-        $classe->update([
-            "classe"=>$request->classe
-
-        ]);
+        $classe= Classe::find($id);
+        $classe->classe= $request->get('classe');
+        $classe->annee= $request->get('annee_id');
+        $classe->save();
         return back()->with("success","annee mise a jour avec succès");
     }
 

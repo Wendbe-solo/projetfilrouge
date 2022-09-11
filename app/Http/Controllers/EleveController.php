@@ -22,7 +22,7 @@ class EleveController extends Controller
 
         $classes = Classe ::orderBy('classe','asc')->get();
         
-        return view('eleve.ajouteleve',compact('eleves','annees','classes'));
+        return view('eleve.create',compact('eleves','annees','classes'));
     }
 
     /**
@@ -32,8 +32,9 @@ class EleveController extends Controller
      */
     public function create()
     {
-        
-        return view('eleve.ajouteleve');
+        $eleve = Eleve ::orderBy('nom','asc')->get();
+        $classes = Classe ::orderBy('classe','asc')->get();
+        return view('eleve.create',compact('eleve','classes'));
     }
 
     /**
@@ -54,7 +55,6 @@ class EleveController extends Controller
             "pere"=>"required",
             "mere"=>"required",
             "numero"=>"required",
-            "annee_id"=>"required",
             "classe_id"=>"required",
             "photo"=>"required"
         ]);
@@ -68,7 +68,6 @@ class EleveController extends Controller
             "pere"=>$request->pere,
             "mere"=>$request->mere,
             "numero"=>$request->numero,
-            "annee_id"=>$request->annee_id,
             "classe_id"=>$request->classe_id,
             "photo"=>$request->photo
         ]);
@@ -92,9 +91,9 @@ class EleveController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Eleve $eleve)
+    public function edit($id)
     {
-        return view("eleve.ajouteleve",compact("eleves"));
+        return view("eleve.edit",compact("eleve"));
     }
 
     /**
@@ -116,7 +115,6 @@ class EleveController extends Controller
             "pere"=>"required",
             "mere"=>"required",
             "numero"=>"required",
-            "annee_id"=>"required",
             "classe_id"=>"required",
             "photo"=>"required"
     
@@ -131,7 +129,6 @@ class EleveController extends Controller
             "pere"=>$request->pere,
             "mere"=>$request->mere,
             "numero"=>$request->numero,
-            "annee_id"=>$request->annee_id,
             "classe_id"=>$request->classe_id,
             "photo"=>$request->photo
 

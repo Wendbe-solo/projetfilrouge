@@ -18,7 +18,6 @@ class CreateMatieresTable extends Migration
             $table->string('matiere');
             $table->string('coeficient');
             $table->string('professeur');
-            $table->foreignId('annee_id')->constrained();
             $table->foreignId('classe_id')->constrained();
             $table->timestamps();
         });

@@ -91,8 +91,7 @@ class AnneescController extends Controller
         $annee->annee= $request->get('annee');
         $annee->save();
 
-       
-        return back()->with("success","annee mise a jour avec succès");
+       return redirect('/anneesco')->with("success","annee mise a jour avec succès");
     
     }
 

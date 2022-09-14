@@ -17,6 +17,7 @@ class CreateNotesTable extends Migration
             $table->id();
             $table->foreignId('eleve_id')->constrained();
             $table->foreignId('devoir_id')->constrained();
+            $table->foreignId('matiere_id')->constrained();
             $table->string('note');
             $table->timestamps();
         });

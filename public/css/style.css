@@ -44,11 +44,13 @@ a, a:hover, a:focus {
     background: #4ECDC4;
     color: #fff;
 }
-
+.deconnecter{
+    background-color: white;
+}
 
 .milieu{
     text-align: center;
-    background-color: rgba(92, 116, 121, 0.847);
+    background-color: #cccccc;
     font-size: 20px;
     height: 20px;
 }

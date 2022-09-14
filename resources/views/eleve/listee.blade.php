@@ -9,7 +9,19 @@
         <h3> Liste des eleves ({{$eleves->count()}}) </h3>
         <div class="row mb">
           <!-- page start-->
+          @if(session()->has("success"))
+        <div class="alert alert-sucess">
+            {{session()->get('success')}}
+            </div>
+        @endif
 
+        @if ($errors->any())
+        <ul>
+            @foreach($errors->all() as $error)
+            <li>{{$error}}</li>
+            @endforeach
+        </ul>
+        @endif
          
 
                 <div class="content-panel">

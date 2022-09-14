@@ -66,7 +66,7 @@
                     <x-responsive-nav-link :href="route('logout')"
                             onclick="event.preventDefault();
                                         this.closest('form').submit();">
-                        {{ __('Se deconnecter') }}
+                        <h3 class="deconnester">{{ __('Se deconnecter') }}</h3>
                     </x-responsive-nav-link>
                 </form>
             </div>
@@ -83,7 +83,7 @@
         <!-- sidebar menu start-->
         <ul class="sidebar-menu" id="nav-accordion">
           <p class="centered"><a href="profile.html"><img src="{{asset('img/directeur.png')}}" class="img-circle" width="80"></a></p>
-          <h5 class="centered">Sam Soffes</h5>
+          <h5 class="centered">Directeur</h5>
           <li class="couleur mt">
             <a class="" href="{{route('dashboard')}}">
               <i class="fa fa-dashboard"></i>

@@ -79,9 +79,17 @@ class DevoirController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Devoir $devoir)
+    public function edit($id)
     {
-        return view("devoir.devoir",compact("devoirs"));
+        $devoir = Devoir::find($id);
+
+        $matieres = Matiere ::orderBy('matiere','asc')->get();
+        $classes = Classe ::orderBy('classe','asc')->get();
+
+        $trimestres = Trimestre ::orderBy('trimestre','asc')->get();
+        
+        $classes = Classe::all();
+        return view("devoir.edit",compact('devoir','matieres','trimestres','classes'));
     }
 
     /**
@@ -91,20 +99,20 @@ class DevoirController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Devoir $devoir)
+    public function update(Request $request,$id)
     {
         $request->validate([
             "libele"=>"required",
+            "matiere_id"=>"required",
             "classe_id"=>"required",
-            "matiere_id"=>"required"
-    
+            "trimestre_id"=>"required"
         ]);
-        $devoir->update([
-            "libele"=>$request->libele,
-            "classe_id"=>$request->classe_id,
-            "matiere_id"=>$request->matiere_id,
-
-        ]);
+        $devoir= Devoir::find($id);
+        $devoir->libele= $request->get('libele');
+        $devoir->matiere_id= $request->get('matiere_id');
+        $devoir->classe_id= $request->get('classe_id');
+        $devoir->trimestre_id= $request->get('trimestre_id');
+        $devoir->save();
         return back()->with("success","matiere mise a jour avec succès");
     }
 

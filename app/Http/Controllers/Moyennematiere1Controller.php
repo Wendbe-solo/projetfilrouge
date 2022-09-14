@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Annee;
-use App\Models\Classe;
 use App\Models\Eleve;
-use App\Models\User;
+use App\Models\Note;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
-class ListesController extends Controller
+class Moyennematiere1Controller extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,16 +16,9 @@ class ListesController extends Controller
      */
     public function index()
     {
-        // $eleves = Eleve ::where('classe_id',2)->get();
-        $eleves = Eleve ::orderBy('nom','asc')->get();
-        $classes = Classe ::orderBy('classe','asc')->get();
-        $annees = Annee ::orderBy('annee','asc')->get();
- 
-
-        return view('eleve.listes',compact(['eleves','annees','classes']));
+        //
     }
 
-    
     /**
      * Show the form for creating a new resource.
      *
@@ -54,9 +46,33 @@ class ListesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request, $eleve_id)
     {
-        //
+        $notes = DB::select('SELECT * FROM notes WHERE eleve_id=?',[$eleve_id]);
+        $notes = Note::where('eleve_id',$eleve_id)->get();
+        $eleves = Eleve::orderBy('nom','asc')->get();
+        $somme= 0;
+        $moyenne = 0;
+        $count = 0;
+        $notes = $request->input('note');
+
+        $somme += $notes;
+        
+       
+        for($i=0;$i < count ($eleve_id); $i++){
+
+            foreach ($notes as $note){
+                
+                $count +=1;
+            };
+        };
+        
+
+        $moyenne = $somme/$count;
+
+
+        return view('moyenne.matiere.insex.show', compact('eleves','moyennes','matieres'));
+
     }
 
     /**
@@ -90,8 +106,6 @@ class ListesController extends Controller
      */
     public function destroy($id)
     {
-        $user = User::find($id);
-        $user->delete();
-        return back()->with('succesDelete','Suprimer avec succès');
+        //
     }
 }

@@ -24,7 +24,8 @@
         @endif
 
         <form class="cmxform form-horizontal style-form" id="signupForm" method="POST" action="{{ route('secretaire.update',$users->id) }}">
-            @csrf
+        @method('PATCH')    
+        @csrf
 
             <!-- Name -->
             <div class="form-group ">
@@ -95,8 +96,8 @@
 
             <div class="form-group">
                         <div class="col-lg-offset-2 col-lg-10">
-                        <button class="btn btn-theme" type="submit">Save</button>
-                        <button class="btn btn-theme04" type="button">Cancel</button>
+                        <button class="btn btn-theme" type="submit">Valider</button>
+                        <button class="btn btn-theme04" type="button">Annuler</button>
                         </div>
                     </div>
         </form>

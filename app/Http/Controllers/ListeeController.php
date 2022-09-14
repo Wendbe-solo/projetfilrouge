@@ -112,11 +112,10 @@ class ListeeController extends Controller
      */
     public function edit($id)
     {
-        $eleves = DB::select('SELECT * FROM eleves WHERE id=?', [$id] );
-        $eleves = $eleves[0];
-        $classes = Classe::all();
-        $annees = Annee::all();
-        return view("eleve.edite",compact('eleves','annees','classes'));
+        $eleves = Eleve::find($id);
+        $classes = Classe ::orderBy('classe','asc')->get();
+        $annees = Annee ::orderBy('annee','asc')->get();
+        return view("eleve.edit",compact('eleves','classes','annees'));
     }
 
     /**
@@ -126,7 +125,7 @@ class ListeeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Eleve $eleve)
+    public function update(Request $request,$id)
     {
         $request->validate([
             "matricule"=>"required",
@@ -138,27 +137,26 @@ class ListeeController extends Controller
             "pere"=>"required",
             "mere"=>"required",
             "numero"=>"required",
-            "annee_id"=>"required",
+            
             "classe_id"=>"required",
             "photo"=>"required"
     
         ]);
-        $eleve->update([
-            "matricule"=>$request->matricule,
-            "nom"=>$request->nom,
-            "prenom"=>$request->prenom,
-            "date_naissance"=>$request->date_naissance,
-            "lieu"=>$request->lieu,
-            "sexe"=>$request->sexe,
-            "pere"=>$request->pere,
-            "mere"=>$request->mere,
-            "numero"=>$request->numero,
-            "annee_id"=>$request->annee_id,
-            "classe_id"=>$request->classe_id,
-            "photo"=>$request->photo
-
-        ]);
-        return back()->with("success","annee mise a jour avec succès");
+        $eleve= Eleve::find($id);
+        $eleve->matricule= $request->get('matricule');
+        $eleve->nom= $request->get('nom');
+        $eleve->prenom= $request->get('prenom');
+        $eleve->date_naissance= $request->get('date_naissance');
+        $eleve->lieu= $request->get('lieu');
+        $eleve->sexe= $request->get('sexe');
+        $eleve->pere= $request->get('pere');
+        $eleve->mere= $request->get('mere');
+        $eleve->numero= $request->get('numero');
+        
+        $eleve->classe_id= $request->get('classe_id');
+        $eleve->photo= $request->get('photo');
+        $eleve->save();
+        return redirect('/listee')->with("success","matiere mise a jour avec succès");
     }
 
     /**

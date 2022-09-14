@@ -12,6 +12,7 @@ class Note extends Model
         "eleve_id",
         "devoir_id",
         "note",
+        "matiere_id",
     ];
 
     public function Eleve()

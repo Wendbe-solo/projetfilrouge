@@ -38,12 +38,14 @@
            
                     <form class="cmxform form-horizontal style-form" id="signupForm" method="POST" action="{{route('note.store')}}">
                     @csrf
+                    
                         <table class="table table-bordered table-hover">
                               <thead>
                                   <tr>
                                   <th scope="col">N°</th>
                                   <th scope="col">Nom et prenom</th>
                                   <th scope="col">Devoir</th>
+                                  <th scope="col">Matiere</th>
                                   <th scope="col">Note</th>
 
                                   </tr>
@@ -62,12 +64,23 @@
                                           <option value=""></option>
 
                                           @foreach($devoirs as $devoir)
-                                        <option value="{{$devoir->id}}"> {{$devoir->matiere->classe->classe}} {{$devoir->libele}} {{$devoir->matiere->matiere}}</option>
+                                        <option value="{{$devoir->id}}"> {{$devoir->trimestre->trimestre}} {{$devoir->matiere->classe->classe}} {{$devoir->libele}} {{$devoir->matiere->matiere}}</option>
+                                        @endforeach 
+                                        </select>
+                                  </td>
+
+                                  <td > 
+                                    
+                                  <select name="matiere_id[]"  type="text" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" >
+                                          <option value=""></option>
+
+                                          @foreach($matieres as $matiere)
+                                        <option value="{{$matiere->id}}"> {{$matiere->classe->classe}}  {{$matiere->matiere}}</option>
                                         
 
                                         @endforeach 
                                         </select>
-                                  <td>
+                                </td>
                                   <td><input  name="note[]" type="text" /></td>
                                   </tr>
 
@@ -80,8 +93,8 @@
 
                         <div class="form-group">
                         <div class="col-lg-offset-2 col-lg-10">
-                            <button class="btn btn-theme" type="submit">Save</button>
-                            <button class="btn btn-theme04" type="button">Cancel</button>
+                        <button class="btn btn-theme" type="submit">Valider</button>
+                        <button class="btn btn-theme04" type="button">Annuler</button>
                         </div>
                     </div>
                     </form>

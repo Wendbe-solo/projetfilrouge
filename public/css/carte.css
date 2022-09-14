@@ -88,3 +88,7 @@
     background-color: rgba(0,0,0,0,4);
     vertical-align: top;
 }
+
+.flex1{
+    display: flex;
+}

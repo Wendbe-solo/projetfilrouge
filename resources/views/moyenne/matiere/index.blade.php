@@ -23,13 +23,13 @@
             </tr>
         </thead>
         <tbody>
-            @foreach($notes as $note)
+            @foreach($matieres as $matiere)
             <tr>
             <th scope="row">{{$loop->index + 1}}</th>
-            <td>{{$note->devoir->matiere->classe->classe}} </td>
-            <td>{{$note->devoir->matiere->matiere}}</td>
+            <td>{{$matiere->classe->classe}}</td>
+            <td>{{$matiere->matiere}}</td>
             <td>
-            <a class="btn btn-info" href="{{route('moyennematiere.show',$note->devoir->matiere_id)}}">Afficher</a>
+            <a class="btn btn-info" href="{{route('moyennematiere.show',$matiere->id)}}">Afficher</a>
             </td>
             </tr>  
             @endforeach

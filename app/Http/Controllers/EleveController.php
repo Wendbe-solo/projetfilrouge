@@ -82,7 +82,10 @@ class EleveController extends Controller
      */
     public function show(Eleve $eleve)
     {
-        return view('eleve.carte',compact('eleves'));
+        $eleves = Eleve ::orderBy('nom','asc')->get();
+        $annees = Annee ::orderBy('annee','asc')->get();
+        $classes = Classe ::orderBy('classe','asc')->get();
+        return view('eleve.carte',compact('eleves','classes','annees'));
     }
 
     /**

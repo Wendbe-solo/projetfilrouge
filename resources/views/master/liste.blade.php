@@ -66,7 +66,7 @@
                     <x-responsive-nav-link :href="route('logout')"
                             onclick="event.preventDefault();
                                         this.closest('form').submit();">
-                        {{ __('Se deconnecter') }}
+                        <h3 class="deconnester">{{ __('Se deconnecter') }}</h3>
                     </x-responsive-nav-link>
                 </form>
             </div>

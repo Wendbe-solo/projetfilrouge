@@ -24,7 +24,8 @@
         </ul>
         @endif
               <div class="form">
-              <form  method="post" action="/listee/update/{{$eleves->id}}" class="form-horizontal style-form">
+              <form  method="post" action="{{route('listee.update',$eleves->id)}}" class="form-horizontal style-form">
+              @method('PATCH')
               @csrf
 
               <div class="form-group last">
@@ -106,18 +107,6 @@
                     </div>
                   </div>
 
-
-                  <div class="form-group ">
-                    <label for="firstname" class="control-label col-lg-2">Annee</label>
-                    <select class="col-6" aria-label=".form-select-lg example" value="{{$eleves->annee_id}}" name="annee_id" id="">
-                  <option value=""></option>
-
-                @foreach ($annees as $annee)
-                <option value="{{$annee->id}}"> {{$annee->annee}}</option>
-                @endforeach
-
-                </select>
-
                 <label for="firstname" class="control-label col-lg-2">Classe</label>
                     <select class="col-6" aria-label=".form-select-lg example" value="{{$eleves->classe_id}}" name="classe_id" id="">
                   <option value=""></option>
@@ -134,8 +123,8 @@
 
                 <div class="form-group">
                     <div class="col-lg-offset-2 col-lg-10">
-                      <button class="btn btn-theme" type="submit">Save</button>
-                      <button class="btn btn-theme04" type="button">Cancel</button>
+                    <button class="btn btn-theme" type="submit">Valider</button>
+                    <button class="btn btn-theme04" type="button">Annuler</button>
                     </div>
                   </div>
 

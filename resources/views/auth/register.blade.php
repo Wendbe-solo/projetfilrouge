@@ -12,7 +12,7 @@
       <section class="wrapper1">
       <div class="row mt">
           <div class="col-lg-12">
-            <h4 class="direction"> Inscription du directeur</h4>
+            <h4 class="milieu"> Inscription du directeur</h4>
             <div class="form-panel">
               <div class="form">
 
@@ -100,18 +100,17 @@
 
             <div class="flex items-center justify-end mt-4">
                 <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
-                    {{ __('Already registered?') }}
+                    {{ __('Vous aviez déjà un compte?') }}
                 </a>
 
                 <x-button class="ml-4">
-                    {{ __('Register') }}
+                    {{ __('Valider') }}
                 </x-button>
             </div>
         </form>
 
         </section>
     </center>
-    <button class="btn btn-theme05" type="button"> <a class="lien" href="{{route('login')}}"> Se connecter</a></button>
     <br>
     <br>
     </x-auth-card>

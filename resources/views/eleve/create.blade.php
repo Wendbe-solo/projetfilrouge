@@ -23,7 +23,8 @@
             @endforeach
         </ul>
         @endif
-              <div class="form">
+
+              <div class="form center">
               <form  method="post" action="{{route('ajouteleve.store')}}" class="form-horizontal style-form">
               @csrf
 
@@ -49,64 +50,91 @@
                 </div>
 
 
-              <div class="col-6 ">
-                    <label for="firstname" class="control-label col-lg-2">Matricule</label>
-                    
-                      <input class=" col-6" id="firstname" name="matricule" type="text"  require/>
-                  
+              <div class="col-6  flex1">
+                    <div>
+                        <label for="firstname" class="control-label col-lg-2">Matricule</label>
 
-                    <label for="firstname" class="control-label col-lg-2">Nom</label>
-                    
-                      <input class="col-6" id="firstname" name="nom" type="text" />
-                  
+                        <div class="col-lg-6">
+                          <input class=" col-6" id="firstname" name="matricule" type="text"  require/>
+                        </div>
+                      </div>
+                    <div>
+                        <label for="firstname" class="control-label col-lg-2">Nom</label>
 
+                        <div class="col-lg-6">
+                          <input class="col-6" id="firstname" name="nom" type="text" />
+                        </div>
+                    </div>
+              </div>
+
+              <div class="col-6  flex1">
+                <div>
+                    <label for="lastname" class="control-label col-lg-2">Prenom</label>
+                    <div class="col-lg-6">
+                    <input class=" col-6" id="lastname" name="prenom" type="text" />
+                    </div>
                 </div>
 
-                  <div class="form-group ">
-                    <label for="lastname" class="control-label col-lg-2">Prenom</label>
-                    <input class=" col-6" id="lastname" name="prenom" type="text" />
-
+                <div>
                     <label class="control-label col-lg-2">Date de naissance</label>
+                    <div class="col-lg-6">
                     <input type="date" name="date_naissance" class="col-6" id="">
+                    </div>
+                </div>   
+              </div>
+
                   
-                     
-                  </div>
-
-                  </div>
 
 
 
-                <div class="form-group ">
+              <div class="col-6  flex1">
+                <div>
                     <label for="lastname" class="control-label col-lg-2">Lieu de naissance</label>
+                    <div class="col-lg-6">
                     <input class=" col-6" id="lastname" name="lieu" type="text" />
+                    </div>
+                </div>
 
+                <div>
                     <label for="lastname" class="control-label col-lg-2">Sexe</label>
+                    <div class="col-lg-6">
                     <select class="col-6" id="lastname" name="sexe" type="text">
                       <option >Choisir</option>
                       <option value="Maxculin">Maxculin</option>
                       <option value="Feminin">Feminin</option>
 
-                    </select>  
-                    
-                  </div>
+                    </select>
+                    </div>  
+                  </div> 
+              </div>
 
 
-                  <div class="form-group ">
+              <div class="col-6  flex1">
+                  <div>
                     <label for="lastname" class="control-label col-lg-2">Nom du père</label>
+                    <div class="col-lg-6">
                     <input class="col-6" id="lastname" name="pere" type="text" />
-
-                    <label for="lastname" class="control-label col-lg-2">Nom de la mère</label>
-                    <input class="col-6" id="lastname" name="mere" type="text" />
-                  </div>
-
-                  <div class="form-group ">
-                    <label for="lastname" class="control-label col-lg-2">Telephone</label>
-                    <div class="col-lg-10">
-                      <input class="col-6" id="lastname" name="numero" type="text" />
                     </div>
                   </div>
 
+                  <div>
+                    <label for="lastname" class="control-label col-lg-2">Nom de la mère</label>
+                    <div class="col-lg-6">
+                    <input class="col-6" id="lastname" name="mere" type="text" />
+                    </div>
+                  </div>
+              </div>
+
+              <div class="col-6  flex1">
+                <div>
+                    <label for="lastname" class="control-label col-lg-2">Telephone</label>
+                    <div class="col-lg-6">
+                      <input class="col-6" id="lastname" name="numero" type="text" />
+                    </div>
+                  </div>
+                <div>
                 <label for="firstname" class="control-label col-lg-2">Classe</label>
+                <div class="col-lg-6">
                     <select class="col-6" aria-label=".form-select-lg example" name="classe_id" id="">
                   <option value=""></option>
 
@@ -116,14 +144,16 @@
 
                 </select>
                 </div>
-
-
+                </div>
+              </div>
                 
+
+                <br>
 
                 <div class="form-group">
                     <div class="col-lg-offset-2 col-lg-10">
-                      <button class="btn btn-theme" type="submit">Save</button>
-                      <button class="btn btn-theme04" type="button">Cancel</button>
+                    <button class="btn btn-theme" type="submit">Valider</button>
+                    <button class="btn btn-theme04" type="button">Annuler</button>
                     </div>
                   </div>
 

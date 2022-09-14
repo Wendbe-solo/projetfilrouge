@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Secretaire;
 use App\Models\User;
 use Illuminate\Validation\Rules;
 use Illuminate\Http\Request;
@@ -78,9 +79,9 @@ class SecretaireController extends Controller
      */
     public function edit($id)
     {
-        $users = DB::select('SELECT * FROM users WHERE id=?', [$id] );
-        $users = $users[0];
-        return view('secretaire.edit',compact('users'));
+        $users = User::find($id);
+        
+        return view("secretaire.edit",compact("users"));
     }
 
     /**
@@ -90,7 +91,7 @@ class SecretaireController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,User $users)
+    public function update(Request $request,$id)
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
@@ -100,14 +101,15 @@ class SecretaireController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
     
         ]);
-        $users->update([
-            'name' => $request->name,
-            'last_name' => $request->last_name,
-            'role' => $request->role,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
-        return back()->with("success","annee mise a jour avec succès");
+        $user= User::find($id);
+        $user->name= $request->get('name');
+        $user->last_name= $request->get('last_name');
+        $user->role= $request->get('role');
+        $user->email= $request->get('email');
+        $user->password= $request->get('password');
+        $user->save();
+
+       return redirect('/secretaire')->with("success","annee mise a jour avec succès");
     }
 
     /**
@@ -118,6 +120,8 @@ class SecretaireController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::find($id);
+        $user->delete();
+        return back()->with('succesDelete','Suprimer avec succès');
     }
 }

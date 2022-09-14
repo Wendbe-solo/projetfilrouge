@@ -14,6 +14,7 @@ use App\Http\Controllers\HomeControllers;
 use App\Http\Controllers\ListeeController;
 use App\Http\Controllers\ListesController;
 use App\Http\Controllers\MatiereController;
+use App\Http\Controllers\Moyennematiere1Controller;
 use App\Http\Controllers\MoyennematiereController;
 use App\Http\Controllers\NoteController;
 use App\Http\Controllers\NoteliController;
@@ -81,6 +82,7 @@ Route::resource('note',NoteController::class)->middleware(['auth']);
 Route::resource('index',NoteliController::class)->middleware(['auth']);
 
 Route::resource('moyennematiere',MoyennematiereController::class)->middleware(['auth']);
+
 
 // Route::get('/classeliste',[ClasseControllerliste1::class,'index'])->name('classeliste');
 

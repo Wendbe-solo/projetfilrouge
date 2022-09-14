@@ -62,6 +62,7 @@ class NoteController extends Controller
 
         $eleve_id = $request->eleve_id;
         $devoir_id = $request->devoir_id;
+        $matiere_id = $request->matiere_id;
         $note = $request->note;
 
         for($i=0;$i < count ($eleve_id); $i++){
@@ -69,6 +70,7 @@ class NoteController extends Controller
             $databasave= [
                 'eleve_id' =>$eleve_id[$i],
                 'devoir_id' =>$devoir_id[$i],
+                'matiere_id' =>$matiere_id[$i],
                 'note' =>$note[$i],
             ];
             DB::table('notes')->insert($databasave);

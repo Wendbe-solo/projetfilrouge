@@ -87,13 +87,12 @@ class ClasseController extends Controller
         $request->validate([
             "classe"=>"required",
             "annee_id"=>"required",
-    
         ]);
         $classe= Classe::find($id);
         $classe->classe= $request->get('classe');
-        $classe->annee= $request->get('annee_id');
+        $classe->annee_id= $request->get('annee_id');
         $classe->save();
-        return back()->with("success","annee mise a jour avec succès");
+        return redirect('/classe')->with("success","annee mise a jour avec succès");
     }
 
     /**

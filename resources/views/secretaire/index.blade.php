@@ -6,7 +6,7 @@
 
     <section id="main-content">
       <section class="wrapper">
-        <h3><i class="fa fa-angle-right"></i> Basic Table Examples</h3>
+        <h3><i class="fa fa-angle-right"></i> Listes des Sécretaire</h3>
         <div class="row">
           <div class="col-md-12">
             <div class="content-panel">
@@ -41,11 +41,12 @@
             <td>{{$user->created_at}}</td>
             <td>
                 <a href="{{route('secretaire.edit',['secretaire'=>$user->id])}}" class="btn btn-info">Editer</a>
-                <a href="" class="btn btn-danger" onclick="">Suprimer</a>
-
-                <form id="" action="" method="post">
+                <form id="form-{{$user->id}}"  action="{{route('secretaire.destroy',$user->id)}}" method="post">
                     @csrf 
                     <input type="hidden" name="_method" value="delete">
+
+                    @method('DELETE')
+                    <button class="btn btn-danger" onclick="if(confirm('Voulez-vous vraiment supprimer?')){document.getElementById('form-{{$user->id}}').submit()}"  type="submit">Supprimer</button>
                 </form>
             </td>
             </tr>  

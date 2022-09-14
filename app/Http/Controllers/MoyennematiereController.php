@@ -76,13 +76,15 @@ class MoyennematiereController extends Controller
     public function show($matiere_id)
     {
         $devoirs = DB::select('SELECT * FROM devoirs WHERE matiere_id=?',[$matiere_id]);
-        $notes = Note ::all();
-        $matieres = Matiere ::all(); 
-        $eleves = Eleve::all(); 
-        $trimestres = Trimestre::all();
-          
+        
+        $matieres = Matiere::all();
+        $eleves = Eleve::orderBy('nom','asc')->get();
+        $classes = Classe::all();
+        $devoirs = Devoir::where('matiere_id',$matiere_id)->get(); 
+        $notes = Note::where('matiere_id',$matiere_id)->get();
+    
            
-            return view('moyenne.matiere.show',compact(['eleves','devoirs','matieres','notes','trimestres'])); 
+        return view('moyenne.matiere.show',compact(['devoirs','matieres','notes','eleves','classes'])); 
     }
 
     /**

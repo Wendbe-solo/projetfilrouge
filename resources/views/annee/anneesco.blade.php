@@ -38,8 +38,8 @@
 
                     <div class="form-group">
                         <div class="col-lg-offset-2 col-lg-10">
-                        <button class="btn btn-theme" type="submit">Save</button>
-                        <button class="btn btn-theme04" type="button">Cancel</button>
+                        <button class="btn btn-theme" type="submit">Valider</button>
+                        <button class="btn btn-theme04" type="button">Annuler</button>
                         </div>
                     </div>
                 </form>
@@ -68,7 +68,7 @@
             <td>{{$annee->created_at}}</td>
             <td>
        
-            <a href="{{route('anneesco.edit',['anneesco'=>$annee->id])}}" class="btn btn-info">Editer</a>
+            <a href="{{route('anneesco.edit',$annee->id)}}" class="btn btn-info">Editer</a>
                 <form id="form-{{$annee->id}}"  action="{{route('anneesco.destroy',$annee->id)}}" method="post">
                     @csrf 
                     <input type="hidden" name="_method" value="delete">

@@ -5,7 +5,7 @@
     <section id="main-content">
       <section class="wrapper">
 
-    
+      <h3>  ({{$devoirs->count()}}) devoir </h3>
         <!-- /row -->
         <div class="row mt">
           <div class="col-lg-12">
@@ -36,33 +36,39 @@
                 @endif
 
            
-                    <form class="cmxform form-horizontal style-form" id="signupForm" method="POST" action="{{route('note.store')}}">
+                    <form class="cmxform form-horizontal style-form" id="signupForm" method="POST" action="{{route('moyennematiere.store')}}">
                     @csrf
                         <table class="table table-bordered table-hover">
                               <thead>
                                   <tr>
                                   <th scope="col">N°</th>
-                                  <th scope="col">Nom et prenom</th>
+                                  
+                                  <th scope="col">Eleve</th>
                                   <th scope="col">Devoir</th>
+                                  <th scope="col">matiere</th>
                                   <th scope="col">Note</th>
 
                                   </tr>
                               </thead>
                               <tbody>
                                 
+                              
+                              
                               @foreach($notes as $note)
                               
-
                                   <tr>
                                   <th scope="row">{{$loop->index + 1}}</th>
-                                  <td > <input name="matiere_id[]" value="{{$note->devoir->matiere_id}}" type="text"> {{$note->devoir->matiere->matiere}}</td>
-                                  <td>{{$note->devoir->matiere_id}}</td>
-                                  <td><input  name="note[]" type="text" /></td>
+                                  <td><input  name="eleve[]" type="text" value="{{$note->eleve_id}} " />{{$note->eleve->nom}} {{$note->eleve->prenom}}</td>
+                                  <td> <input  name="note[]" type="text" value="{{$note->id}} " />{{$note->note}} </td>
+                                
+                                  @endforeach
+                                  
                                   </tr>
 
                                   </tr> 
                         
-                                  @endforeach 
+                                   
+                                  
                       
                               </tbody>
                         </table>
